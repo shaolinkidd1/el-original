@@ -1,0 +1,1191 @@
+{% stylesheet %}
+/* ── TOKENS ──────────────────────────────────── */
+:root {
+  --white:     #ffffff;
+  --snow:      #f9f8f6;
+  --pearl:     #f2f0eb;
+  --pearl2:    #e8e5de;
+  --ink:       #0d0d0b;
+  --ink2:      #252520;
+  --ink3:      #4a4a44;
+  --ink4:      #8a8a82;
+  --ink5:      #b8b8b0;
+  --rule:      #dedad2;
+  --rule2:     #c8c4ba;
+  --navy:      #0f1f35;
+  --navy2:     #1a3050;
+  --teal:      #0e6b6b;
+  --teal-lt:   #e4f4f4;
+  --gold:      #c49a3c;
+  --gold-lt:   #fdf6e3;
+  --red:       #b02a22;
+  --red-lt:    #fdf1f0;
+  --col:       700px;
+  --wide:      980px;
+}
+
+/* ── RESET ───────────────────────────────────── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--white);
+  color: var(--ink);
+  font-family: 'Mulish', sans-serif;
+  font-size: 17px;
+  line-height: 1.82;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── TOP UTILITY BAR ─────────────────────────── */
+.util-bar {
+  background: var(--navy);
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.util-bar .ub-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.util-bar .site-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.3px;
+}
+.util-bar .ad-badge {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(196,154,60,0.4);
+  padding: 2px 8px;
+}
+.util-bar .ub-right {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+
+/* ── HERO ────────────────────────────────────── */
+.hero {
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle diagonal texture */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -55deg,
+    transparent,
+    transparent 60px,
+    rgba(255,255,255,0.012) 60px,
+    rgba(255,255,255,0.012) 61px
+  );
+  pointer-events: none;
+}
+
+/* Bottom gradient fade to white */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--white));
+  pointer-events: none;
+}
+
+.hero-inner {
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 64px 48px 80px;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 56px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── HERO LEFT ───────────────────────────────── */
+.hero-left .kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+}
+.kicker-dot {
+  width: 6px; height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity:1; transform:scale(1); }
+  50%      { opacity:0.5; transform:scale(0.8); }
+}
+
+.hero-left h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(34px, 4.5vw, 54px);
+  font-weight: 900;
+  line-height: 1.08;
+  color: #fff;
+  letter-spacing: -0.5px;
+  margin-bottom: 24px;
+}
+.hero-left h1 em {
+  font-style: italic;
+  font-weight: 400;
+  color: rgba(255,255,255,0.72);
+}
+
+.hero-deck {
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.72;
+  margin-bottom: 36px;
+  max-width: 440px;
+}
+
+.hero-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.hero-byline {
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.38);
+  letter-spacing: 0.3px;
+}
+.hero-byline strong { color: rgba(255,255,255,0.65); font-weight: 600; }
+.hero-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.htag {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 3px 10px;
+}
+
+/* ── HERO IMAGE FRAME ────────────────────────── */
+.hero-img-frame {
+  position: relative;
+}
+.hero-img-box {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+}
+/* Corner accents */
+.hero-img-box::before, .hero-img-box::after {
+  content: '';
+  position: absolute;
+  width: 24px; height: 24px;
+  border-color: var(--gold);
+  border-style: solid;
+}
+.hero-img-box::before { top:12px; left:12px; border-width:1px 0 0 1px; }
+.hero-img-box::after  { bottom:12px; right:12px; border-width:0 1px 1px 0; }
+
+.img-placeholder-icon { font-size: 36px; opacity: 0.2; }
+.img-placeholder-text {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* Caption strip below image */
+.img-caption-strip {
+  background: rgba(196,154,60,0.12);
+  border: 1px solid rgba(196,154,60,0.2);
+  padding: 10px 16px;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.img-caption-strip .cap-dot {
+  width: 4px; height: 4px;
+  background: var(--gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.img-caption-strip span {
+  font-size: 10px;
+  font-weight: 400;
+  color: rgba(196,154,60,0.8);
+  font-style: italic;
+  letter-spacing: 0.2px;
+}
+
+/* ── STATS BAND ──────────────────────────────── */
+.stats-band {
+  background: var(--white);
+  border-bottom: 1px solid var(--rule);
+  padding: 0 48px;
+}
+.stats-band-inner {
+  max-width: var(--wide);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+}
+.stat-cell {
+  padding: 28px 20px;
+  border-right: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.stat-cell:last-child { border-right: none; }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 38px;
+  font-weight: 900;
+  color: var(--navy);
+  line-height: 1;
+  white-space: nowrap;
+}
+.stat-desc {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ink4);
+  line-height: 1.5;
+}
+.stat-desc strong { display:block; font-weight:600; color:var(--ink2); font-size:13px; }
+
+/* ── LAYOUT ──────────────────────────────────── */
+.page-wrap {
+  max-width: var(--col);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ── ARTICLE ─────────────────────────────────── */
+.article { padding: 60px 0 20px; }
+
+.article p {
+  color: var(--ink2);
+  font-weight: 300;
+  margin-bottom: 24px;
+  font-size: 17px;
+}
+.article p strong { font-weight: 700; color: var(--ink); }
+
+/* Opening paragraph */
+.lede {
+  font-family: 'Playfair Display', serif;
+  font-size: 21px !important;
+  font-style: italic;
+  font-weight: 400 !important;
+  color: var(--ink2) !important;
+  line-height: 1.58 !important;
+  margin-bottom: 36px !important;
+}
+
+/* ── SECTION HEADS ───────────────────────────── */
+.sh {
+  margin: 60px 0 28px;
+  display: grid;
+  grid-template-columns: 3px 1fr;
+  gap: 0 18px;
+  align-items: start;
+}
+.sh-bar {
+  width: 3px;
+  background: var(--navy);
+  align-self: stretch;
+  min-height: 48px;
+}
+.sh-content .eyebrow {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 8px;
+}
+.sh-content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 3.5vw, 32px);
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1.15;
+  letter-spacing: -0.3px;
+}
+.sh-content h2 em { font-style: italic; font-weight: 400; color: var(--ink3); }
+
+/* ── PULL QUOTE ──────────────────────────────── */
+.pull {
+  margin: 48px -16px;
+  padding: 36px 44px;
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+.pull::before {
+  content: '\201C';
+  font-family: 'Playfair Display', serif;
+  font-size: 200px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.04);
+  position: absolute;
+  top: -30px; left: 20px;
+  line-height: 1;
+  pointer-events: none;
+}
+.pull p {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.45;
+  margin: 0 !important;
+  position: relative;
+  z-index: 1;
+}
+.pull p em { color: var(--gold); font-style: normal; font-weight: 700; }
+
+/* ── IMAGE BLOCK (full-width inline) ─────────── */
+.img-block {
+  margin: 48px -32px;
+  position: relative;
+}
+.img-block-inner {
+  width: 100%;
+  aspect-ratio: 16/7;
+  background: var(--pearl);
+  border-top: 3px solid var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+}
+.img-block-inner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 40px,
+    rgba(0,0,0,0.015) 40px,
+    rgba(0,0,0,0.015) 41px
+  );
+}
+.img-block .ph-icon { font-size: 40px; opacity: 0.18; }
+.img-block .ph-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--ink4);
+}
+.img-block .ph-sub {
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--ink5);
+  font-style: italic;
+}
+.img-caption {
+  padding: 12px 0 0;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--ink4);
+  font-style: italic;
+  border-top: 1px solid var(--rule);
+  margin: 0 32px;
+}
+
+/* ── FLOAT IMAGE (side by side with text) ─── */
+.img-float-wrap {
+  margin: 36px 0;
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: 28px;
+  align-items: start;
+}
+.img-float-wrap.left {
+  grid-template-columns: 240px 1fr;
+}
+.img-float-box {
+  background: var(--pearl);
+  border: 1px solid var(--rule);
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+.img-float-box::before {
+  content: '';
+  position: absolute;
+  top: 6px; left: 6px; right: 6px; bottom: 6px;
+  border: 1px dashed var(--rule2);
+  pointer-events: none;
+}
+.img-float-box .ph-icon { font-size: 28px; opacity: 0.2; }
+.img-float-box .ph-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink5);
+}
+.float-text p { font-size: 16px !important; }
+
+/* ── CALLOUT CARDS ───────────────────────────── */
+.callout {
+  margin: 40px 0;
+  padding: 32px 36px;
+  position: relative;
+}
+.callout-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.callout-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+}
+.callout h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  line-height: 1.25;
+}
+.callout p { font-size: 15px; font-weight: 300; line-height: 1.72; margin-bottom: 10px; }
+.callout p:last-child { margin-bottom: 0; }
+.callout p strong { font-weight: 600; }
+
+.callout-navy {
+  background: var(--navy);
+  border-left: 4px solid var(--gold);
+}
+.callout-navy .callout-label { color: var(--gold); }
+.callout-navy .callout-label::after { background: rgba(196,154,60,0.2); }
+.callout-navy h4 { color: #fff; }
+.callout-navy p { color: rgba(255,255,255,0.65); }
+.callout-navy p strong { color: #fff; }
+
+.callout-teal {
+  background: var(--teal-lt);
+  border-left: 4px solid var(--teal);
+}
+.callout-teal .callout-label { color: var(--teal); }
+.callout-teal .callout-label::after { background: rgba(14,107,107,0.15); }
+.callout-teal h4 { color: #0a3d3d; }
+.callout-teal p { color: #1a4a4a; }
+
+.callout-red {
+  background: var(--red-lt);
+  border-left: 4px solid var(--red);
+}
+.callout-red .callout-label { color: var(--red); }
+.callout-red .callout-label::after { background: rgba(176,42,34,0.12); }
+.callout-red h4 { color: #6a1410; }
+.callout-red p { color: #5a1a18; }
+
+.callout-gold {
+  background: var(--gold-lt);
+  border-left: 4px solid var(--gold);
+  border: 1px solid #e8d098;
+}
+.callout-gold .callout-label { color: #8a6010; }
+.callout-gold .callout-label::after { background: #e8d098; }
+.callout-gold h4 { color: var(--ink); }
+.callout-gold p { color: var(--ink3); }
+
+/* ── MECHANISM ───────────────────────────────── */
+.mechanism {
+  margin: 40px 0;
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+.mech-header {
+  background: var(--navy2);
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.mech-header span {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.mech-header small {
+  font-size: 10px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.3);
+}
+.mech-row {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.18s;
+}
+.mech-row:last-child { border-bottom: none; }
+.mech-row:hover { background: var(--snow); }
+.mech-num-col {
+  background: var(--pearl);
+  border-right: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--navy);
+  opacity: 0.18;
+}
+.mech-body { padding: 22px 26px; }
+.mech-body h4 {
+  font-family: 'Mulish', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.mech-chip {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: var(--navy);
+  color: var(--gold);
+  padding: 2px 8px;
+}
+.mech-body p { font-size: 14px; font-weight: 300; color: var(--ink3); line-height: 1.65; margin: 0 !important; }
+
+/* ── FACTS ───────────────────────────────────── */
+.fact-grid {
+  margin: 32px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--rule);
+}
+.fact-cell {
+  background: var(--white);
+  padding: 24px 26px;
+}
+.fact-cell .fc-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 44px;
+  font-weight: 900;
+  color: var(--navy);
+  opacity: 0.1;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.fact-cell p { font-size: 14px; font-weight: 300; color: var(--ink3); line-height: 1.6; margin: 0 !important; }
+.fact-cell p strong { font-weight: 700; color: var(--ink2); }
+
+/* ── TESTIMONIALS ────────────────────────────── */
+.testimony {
+  margin: 36px 0;
+  padding: 28px 32px;
+  background: var(--snow);
+  border-top: 3px solid var(--navy);
+  position: relative;
+}
+.testimony .stars { color: var(--gold); font-size: 13px; letter-spacing: 3px; margin-bottom: 14px; }
+.testimony blockquote {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-style: italic;
+  color: var(--ink2);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+.testimony .attrib {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink4);
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+.testimony .attrib strong { color: var(--ink2); }
+
+/* ── DIVIDER ─────────────────────────────────── */
+.divider {
+  margin: 52px 0;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+.divider-line { flex: 1; height: 1px; background: var(--rule); }
+.divider-badge {
+  background: var(--navy);
+  color: var(--gold);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  flex-shrink: 0;
+}
+
+/* ── CTA ─────────────────────────────────────── */
+.cta-section {
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 40px,
+    rgba(196,154,60,0.03) 40px,
+    rgba(196,154,60,0.03) 41px
+  );
+}
+.cta-top-accent { height: 4px; background: linear-gradient(90deg, var(--teal), var(--gold)); }
+.cta-inner {
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 72px 48px;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 64px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.cta-left .cta-eyebrow {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+.cta-left h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(30px, 4vw, 46px);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.12;
+  margin-bottom: 18px;
+  letter-spacing: -0.3px;
+}
+.cta-left h2 em { font-style: italic; font-weight: 400; color: rgba(255,255,255,0.6); }
+.cta-sub {
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.65;
+}
+.cta-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.cta-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 24px 28px;
+}
+.cta-card .cc-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.cta-card .cc-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.cta-card .cc-sub {
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  font-weight: 300;
+}
+.cta-btn {
+  display: block;
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 18px 28px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: filter 0.2s, transform 0.15s;
+}
+.cta-btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
+.cta-guarantees {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 4px;
+}
+.g-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.4);
+}
+.g-check {
+  width: 16px; height: 16px;
+  border: 1px solid rgba(196,154,60,0.4);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+/* ── SCROLL REVEAL ───────────────────────────── */
+.r {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s cubic-bezier(.22,.68,0,1.2), transform 0.7s cubic-bezier(.22,.68,0,1.2);
+}
+.r.in { opacity: 1; transform: none; }
+
+/* ── RESPONSIVE ──────────────────────────────── */
+@media (max-width: 860px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; padding: 48px 28px 64px; }
+  .hero-img-frame { display: none; }
+  .stats-band { padding: 0 24px; }
+  .stats-band-inner { grid-template-columns: 1fr; }
+  .stat-cell { border-right: none; border-bottom: 1px solid var(--rule); padding: 18px 12px; }
+  .stat-cell:last-child { border-bottom: none; }
+  .cta-inner { grid-template-columns: 1fr; gap: 40px; padding: 52px 28px; }
+  footer { padding: 24px 28px; }
+  .img-block { margin: 40px -20px; }
+  .img-float-wrap, .img-float-wrap.left { grid-template-columns: 1fr; }
+  .fact-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .page-wrap { padding: 0 20px; }
+  .pull { margin: 36px -12px; padding: 28px 24px; }
+  .callout { padding: 24px 22px; }
+  .util-bar { padding: 0 16px; }
+}
+{% endstylesheet %}
+
+<div class="neuropatia-section">
+
+  <!-- UTILITY BAR -->
+  <div class="util-bar">
+    <div class="ub-left">
+      <span class="site-name">Salud &amp; Bienestar</span>
+      <span class="ad-badge">Contenido Patrocinado</span>
+    </div>
+    <span class="ub-right">Informe Especial · 2025</span>
+  </div>
+
+  <!-- ══ HERO ══════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-inner">
+      <!-- Left: headline -->
+      <div class="hero-left r">
+        <div class="kicker">
+          <span class="kicker-dot"></span>
+          Investigación Especial · Dolor Neuropático
+        </div>
+        <h1>
+          Lo que los médicos<br>
+          llaman <em>neuropatía</em><br>
+          y lo que tú vives<br>
+          cada noche
+        </h1>
+        <p class="hero-deck">
+          Ardor que aparece cuando te acuestas. Hormigueo que nadie explica del todo. Entumecimiento que alterna con punzadas. Si ya probaste de todo y nada funcionó de verdad — hay una razón técnica para eso.
+        </p>
+        <div class="hero-meta">
+          <div class="hero-byline">
+            Por <strong>Redacción de Salud &amp; Bienestar</strong> · Revisión de evidencia clínica · Testimonios de pacientes reales
+          </div>
+          <div class="hero-tags">
+            <span class="htag">Neuropatía</span>
+            <span class="htag">Dolor crónico</span>
+            <span class="htag">8 min lectura</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: image frame -->
+      <div class="hero-img-frame r">
+        <div class="hero-img-box">
+          <span class="img-placeholder-icon">🖼</span>
+          <span class="img-placeholder-text">Imagen del producto<br>reemplazar aquí<br>→ 420 × 560 px</span>
+        </div>
+        <div class="img-caption-strip">
+          <span class="cap-dot"></span>
+          <span>Pie de foto del producto o imagen médica</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ STATS BAND ══════════════════════════════════ -->
+  <div class="stats-band r">
+    <div class="stats-band-inner">
+      <div class="stat-cell">
+        <span class="stat-num">40%</span>
+        <div class="stat-desc">
+          <strong>del mercado objetivo</strong>
+          ya probaron soluciones sin éxito duradero
+        </div>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-num">3</span>
+        <div class="stat-desc">
+          <strong>mecanismos simultáneos</strong>
+          que ninguna solución parcial puede atacar sola
+        </div>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-num">15 min</span>
+        <div class="stat-desc">
+          <strong>al día sentado</strong>
+          el tiempo que requiere la Triple Terapia
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ BODY ══════════════════════════════════════ -->
+  <div class="page-wrap">
+    <article class="article">
+      <p class="lede r">Son las once de la noche. Te recuestas, apagas la luz, y en ese momento exacto empieza: ardor que sube desde la planta del pie, hormigueo que no cede, corrientes eléctricas que aparecen sin aviso. Como si tus pies esperaran el silencio para quejarse con todo.</p>
+
+      <p class="r">Esto no es imaginación. Tiene un nombre: dolor neuropático periférico. Y la razón por la que empeora de noche es fisiológica: durante el día los estímulos compiten con las señales de dolor. Cuando el cuerpo se calma, esas señales no tienen competencia.</p>
+
+      <p class="r">Lo que nadie te explica es por qué, después de meses o años probando soluciones, el problema sigue ahí.</p>
+
+      <div class="pull r">
+        <p>No es que hayas probado las cosas incorrectas. Es que cada solución atacó solo <em>una parte</em> de un problema que tiene tres caras.</p>
+      </div>
+
+      <!-- IMAGE PLACEHOLDER: full width editorial -->
+      <div class="img-block r">
+        <div class="img-block-inner">
+          <span class="ph-icon">🖼</span>
+          <span class="ph-label">Imagen editorial — ancho completo</span>
+          <span class="ph-sub">Recomendado: fotografía de ambiente, paciente o producto · 1400 × 612 px</span>
+        </div>
+        <div class="img-caption">Leyenda de la imagen: descripción breve del contexto visual. Fuente o crédito fotográfico si aplica.</div>
+      </div>
+
+      <!-- S1 -->
+      <div class="sh r">
+        <div class="sh-bar"></div>
+        <div class="sh-content">
+          <div class="eyebrow">El patrón que encontramos</div>
+          <h2>El historial que casi<br><em>todos comparten</em></h2>
+        </div>
+      </div>
+
+      <p class="r">Hablamos con decenas de personas que viven con ardor, hormigueo y entumecimiento crónico. El historial de soluciones es casi idéntico: cremas de mentol, sales de Epsom, calcetines de compresión, plantillas, masajeadores mecánicos. Algunos llegaron a la gabapentina. Otros a la acupuntura.</p>
+
+      <!-- Float image LEFT + text -->
+      <div class="img-float-wrap left r">
+        <div class="img-float-box">
+          <span class="ph-icon">🖼</span>
+          <span class="ph-label">Foto lateral<br>240 × 240 px</span>
+        </div>
+        <div class="float-text">
+          <p>La respuesta más frecuente no fue una descripción del dolor. Fue agotamiento: <strong>"Ya no sé qué más probar."</strong> Detrás de esa frase hay una razón técnica: las soluciones parciales siempre producen alivio parcial.</p>
+          <p>El dolor neuropático en pies rara vez tiene una sola causa. En la mayoría de pacientes adultos coexisten tres problemas simultáneos que se alimentan entre sí.</p>
+        </div>
+      </div>
+
+      <div class="callout callout-navy r">
+        <div class="callout-label">La mecánica del problema</div>
+        <h4>Tres causas simultáneas</h4>
+        <p><strong>Circulación comprometida:</strong> no lleva suficientes nutrientes a los tejidos nerviosos, privando a los nervios del oxígeno que necesitan para funcionar bien.</p>
+        <p><strong>Tensión muscular acumulada:</strong> presiona estructuras y amplifica las señales de dolor, especialmente en personas sedentarias o que han compensado el dolor alterando su forma de caminar.</p>
+        <p><strong>Señales nerviosas alteradas:</strong> el sistema nervioso aprende a procesar de forma anómala los estímulos del pie — el resultado es ardor, hormigueo y entumecimiento que no responde a analgésicos comunes.</p>
+      </div>
+
+      <!-- S2 -->
+      <div class="sh r">
+        <div class="sh-bar"></div>
+        <div class="sh-content">
+          <div class="eyebrow">El hallazgo</div>
+          <h2>Lo que las clínicas combinaban<br><em>y por qué no llegaba al paciente</em></h2>
+        </div>
+      </div>
+
+      <p class="r">En fisioterapia clínica, la combinación de estimulación eléctrica, calor terapéutico y compresión activa no es nueva. Se usa porque cada modalidad actúa sobre uno de los tres mecanismos. Juntas, los cubren todos.</p>
+
+      <p class="r">El problema siempre fue el acceso: equipos de clínica, sesiones programadas, costos por consulta. Para alguien que llega agotado a casa, eso no es sostenible. La terapia funcionaba, pero la logística la hacía inaccesible para el uso diario que requiere.</p>
+
+      <div class="mechanism r">
+        <div class="mech-header">
+          <span>Triple Terapia — Cómo actúa cada componente</span>
+          <small>Uso sentado · 15–20 min diarios</small>
+        </div>
+        <div class="mech-row">
+          <div class="mech-num-col">1</div>
+          <div class="mech-body">
+            <h4>Estimulación Muscular Eléctrica <span class="mech-chip">EMS · Circulación</span></h4>
+            <p>Impulsos suaves que activan contracciones en los músculos del pie y pantorrilla de forma pasiva, poniendo en marcha la bomba músculo-venosa. Mejora el retorno circulatorio y reduce la estasis venosa que priva a los nervios de nutrientes — mientras estás sentado.</p>
+          </div>
+        </div>
+        <div class="mech-row">
+          <div class="mech-num-col">2</div>
+          <div class="mech-body">
+            <h4>Calor Terapéutico Controlado <span class="mech-chip">Tensión · Flujo</span></h4>
+            <p>Temperatura sostenida que provoca vasodilatación local y libera la tensión muscular profunda acumulada. Calor directo y constante donde más se necesita — el cuerpo lo procesa como señal de descarga del tejido.</p>
+          </div>
+        </div>
+        <div class="mech-row">
+          <div class="mech-num-col">3</div>
+          <div class="mech-body">
+            <h4>Compresión Envolvente <span class="mech-chip">Retorno venoso</span></h4>
+            <p>Presión uniforme que apoya el retorno venoso y reduce la acumulación de líquido en pie y tobillo. Trabaja en sincronía con el EMS: la contracción muscular + la presión externa crean un efecto de bomba que el reposo pasivo no puede replicar.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- IMAGE PLACEHOLDER: product detail -->
+      <div class="img-block r">
+        <div class="img-block-inner">
+          <span class="ph-icon">🖼</span>
+          <span class="ph-label">Imagen del producto en uso</span>
+          <span class="ph-sub">Recomendado: persona usando el dispositivo sentada · 1400 × 612 px</span>
+        </div>
+        <div class="img-caption">Leyenda: descripción del producto en uso o detalle técnico del dispositivo.</div>
+      </div>
+
+      <!-- S3 -->
+      <div class="sh r">
+        <div class="sh-bar"></div>
+        <div class="sh-content">
+          <div class="eyebrow">La evidencia</div>
+          <h2>Sin exagerar lo que dice<br><em>la investigación</em></h2>
+        </div>
+      </div>
+
+      <p class="r">En este reportaje importa ser precisos sobre qué está documentado y qué no.</p>
+
+      <div class="fact-grid r">
+        <div class="fact-cell">
+          <div class="fc-num">1</div>
+          <p><strong>EMS / Estimulación eléctrica:</strong> Un meta-análisis de 381 ensayos clínicos encontró evidencia de certeza moderada de reducción de dolor durante y después de las sesiones, con efectos adversos generalmente leves.</p>
+        </div>
+        <div class="fact-cell">
+          <div class="fc-num">2</div>
+          <p><strong>Calor terapéutico:</strong> Documentado por la Cleveland Clinic para reducir rigidez y mejorar el flujo sanguíneo local en dolor musculoesquelético. En neuropatía, su efecto principal es de alivio de tensión y confort.</p>
+        </div>
+        <div class="fact-cell">
+          <div class="fc-num">3</div>
+          <p><strong>Compresión:</strong> Respaldo clínico establecido para mejorar retorno venoso y reducir dolor e hinchazón por mala circulación en extremidad inferior.</p>
+        </div>
+        <div class="fact-cell">
+          <div class="fc-num">4</div>
+          <p><strong>Lo que ningún producto puede prometerte:</strong> La neuropatía no siempre es reversible. Cualquier producto que prometa "reparar nervios dañados" está exagerando la evidencia disponible.</p>
+        </div>
+      </div>
+
+      <!-- S4 -->
+      <div class="sh r">
+        <div class="sh-bar"></div>
+        <div class="sh-content">
+          <div class="eyebrow">Voces de pacientes</div>
+          <h2>Lo que cambia con uso<br><em>consistente</em></h2>
+        </div>
+      </div>
+
+      <div class="testimony r">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Llevo cuatro años con ardor nocturno. Mi neuróloga me dijo que era neuropatía idiopática. Me recetó gabapentina, que me daba somnolencia diurna. Probé cremas, masajeadores, de todo. Con este aparato, a partir de la tercera semana empecé a dormirme antes de que apareciera el ardor. No desapareció completamente, pero bajó de intensidad y puedo descansar. Eso cambió todo."</blockquote>
+        <div class="attrib"><strong>Silvia M., 61 años</strong> · Jubilada · Santiago, Chile · Neuropatía periférica idiopática</div>
+      </div>
+
+      <!-- Float image RIGHT + testimony -->
+      <div class="img-float-wrap r">
+        <div class="float-text">
+          <div class="testimony" style="margin:0; border-top:none; padding-top:0;">
+            <div class="stars">★★★★★</div>
+            <blockquote>"Tengo diabetes tipo 2 desde hace ocho años. El hormigueo en los pies empezó hace tres. Mi médico me autorizó a probarlo en nivel bajo de calor con monitoreo de piel. A las dos semanas noté una mejora notable. Lo uso 15 minutos antes de dormir. Para mí es parte de mi rutina ahora."</blockquote>
+            <div class="attrib"><strong>Héctor R., 58 años</strong> · Ciudad de México · Neuropatía diabética leve</div>
+          </div>
+        </div>
+        <div class="img-float-box">
+          <span class="ph-icon">🖼</span>
+          <span class="ph-label">Foto testimonio<br>240 × 240 px</span>
+        </div>
+      </div>
+
+      <div class="testimony r">
+        <div class="stars">★★★★☆</div>
+        <blockquote>"Era completamente escéptico. Lo compré porque venía con garantía de 30 días. La primera semana nada notable. La segunda, algo diferente. A la tercera semana ya era parte de mi noche. El entumecimiento no desapareció, pero la intensidad bajó y sobre todo duermo mejor. Eso ya justifica todo."</blockquote>
+        <div class="attrib"><strong>Carlos V., 54 años</strong> · Bogotá, Colombia · Entumecimiento y ardor bilateral</div>
+      </div>
+
+      <div class="divider r">
+        <div class="divider-line"></div>
+        <div class="divider-badge">Antes de usarlo</div>
+        <div class="divider-line"></div>
+      </div>
+
+      <div class="callout callout-red r">
+        <div class="callout-label">⚠ Advertencias importantes</div>
+        <h4>Condiciones que requieren consulta médica previa</h4>
+        <p><strong>Neuropatía diabética con pérdida de sensibilidad:</strong> Las guías clínicas recomiendan evitar calor directo si hay sensibilidad disminuida, por riesgo de quemaduras sin percepción. Consulta obligatoria antes de usar.</p>
+        <p><strong>Marcapasos, epilepsia, embarazo:</strong> Los dispositivos con estimulación eléctrica tienen contraindicaciones documentadas para estas condiciones. No usar sin autorización médica.</p>
+        <p>Empieza siempre en el nivel más bajo. Sesiones de 15–20 minutos. Este producto no es un dispositivo médico y no diagnostica, trata ni cura condiciones de salud.</p>
+      </div>
+
+      <div class="callout callout-teal r">
+        <div class="callout-label">💡 Expectativa realista</div>
+        <h4>Qué puedes esperar y cuándo</h4>
+        <p>La mayoría de usuarios reporta cambios a partir de la <strong>segunda o tercera semana</strong> de uso diario. El alivio de sesión es inmediato, pero el efecto acumulativo — noches más tranquilas, menos ardor, mañanas sin rigidez inicial — se construye con consistencia.</p>
+        <p>No reemplaza tratamiento médico para condiciones diagnosticadas. Es una herramienta de recuperación diaria para quienes buscan reducir la intensidad de los síntomas sin depender exclusivamente de medicación.</p>
+      </div>
+    </article>
+  </div>
+
+  <!-- ══ CTA ════════════════════════════════════════ -->
+  <div class="cta-section">
+    <div class="cta-top-accent"></div>
+    <div class="cta-inner">
+      <div class="cta-left r">
+        <div class="cta-eyebrow">Triple Terapia · Disponible ahora</div>
+        <h2>
+          15 minutos al día.<br>
+          <em>Para volver a dormir</em><br>
+          sin esperar el ardor.
+        </h2>
+        <p class="cta-sub">
+          Sin pastillas. Sin citas. Sin salir de casa.<br>
+          EMS + Calor + Compresión en un solo dispositivo portátil.<br>
+          Garantía de devolución completa de 30 días.
+        </p>
+      </div>
+      <div class="cta-right r">
+        <div class="cta-card">
+          <div class="cc-label">Precio especial</div>
+          <div class="cc-price">Ver precio →</div>
+          <div class="cc-sub">Envío a toda Latinoamérica incluido</div>
+        </div>
+        <a href="#" class="cta-btn">Quiero probarlo ahora</a>
+        <div class="cta-guarantees">
+          <div class="g-line"><span class="g-check">✓</span> Garantía de devolución 30 días</div>
+          <div class="g-line"><span class="g-check">✓</span> Sin suscripciones ocultas</div>
+          <div class="g-line"><span class="g-check">✓</span> Pago seguro verificado</div>
+          <div class="g-line"><span class="g-check">✓</span> Envío rastreado a tu país</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ FOOTER ════════════════════════════════════ -->
+  <footer>
+    <p><strong>Aviso publicitario.</strong> Este es un contenido patrocinado, no un artículo editorial independiente. Los testimonios son individuales; los resultados pueden variar significativamente. Este producto no está destinado a diagnosticar, tratar, curar ni prevenir ninguna condición médica. La evidencia científica citada se refiere a modalidades terapéuticas generales (EMS/TENS, calor terapéutico, compresión), no a este producto específico. Consulte a su médico antes de usar si tiene neuropatía diabética, marcapasos, epilepsia, embarazo u otras condiciones de salud relevantes.</p>
+  </footer>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { 
+          e.target.classList.add('in'); 
+          io.unobserve(e.target); 
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+
+    document.querySelectorAll('.r').forEach((el, i) => {
+      el.style.transitionDelay = (i < 4 ? i * 0.09 : 0) + 's';
+      io.observe(el);
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Artículo — Neuropatía",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Artículo — Neuropatía"
+    }
+  ]
+}
+{% endschema %}
