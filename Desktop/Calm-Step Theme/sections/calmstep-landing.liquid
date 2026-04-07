@@ -1,0 +1,1631 @@
+{{ 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Jost:wght@200;300;400;500;600&display=swap' | stylesheet_tag }}
+
+<style>
+/* ══ TOKENS ══════════════════════════════════ */
+:root {
+  --cs-white:   #ffffff;
+  --cs-snow:    #f9f8f7;
+  --cs-fog:     #f2f0ed;
+  --cs-fog2:    #e8e5e0;
+  --cs-ink:     #0c0c0b;
+  --cs-ink2:    #222220;
+  --cs-ink3:    #555550;
+  --cs-ink4:    #999990;
+  --cs-ink5:    #c4c4bc;
+  --cs-rule:    #e0ddd8;
+  --cs-rule2:   #cccabf;
+  --cs-gold:    #b09060;
+  --cs-gold2:   #c8aa78;
+  --cs-gold-lt: #f7f2ea;
+}
+
+/* ══ RESET (scoped) ══════════════════════════ */
+.cs-landing *, .cs-landing *::before, .cs-landing *::after { box-sizing: border-box; }
+.cs-landing { font-family: 'Jost', sans-serif; font-weight: 300; font-size: 16px; line-height: 1.8; -webkit-font-smoothing: antialiased; color: var(--cs-ink); background: var(--cs-white); }
+
+/* ══ NAV ═════════════════════════════════════ */
+.cs-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--cs-rule);
+  height: 72px;
+  display: flex;
+  align-items: center;
+  padding: 0 48px;
+  justify-content: space-between;
+}
+.cs-nav-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  text-decoration: none;
+}
+.cs-logo-top {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--cs-ink);
+  line-height: 1;
+}
+.cs-logo-rule-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  justify-content: center;
+}
+.cs-logo-rule-line { flex: 1; height: 1px; background: var(--cs-ink); opacity: 0.4; }
+.cs-logo-bottom {
+  font-family: 'Jost', sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--cs-ink);
+  line-height: 1;
+}
+.cs-nav-links { display: flex; gap: 36px; list-style: none; margin: 0; padding: 0; }
+.cs-nav-links a {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--cs-ink3);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.cs-nav-links a:hover { color: var(--cs-ink); }
+.cs-nav-cta {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--cs-ink);
+  border: 1px solid var(--cs-ink);
+  padding: 9px 24px;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.cs-nav-cta:hover { background: var(--cs-ink); color: var(--cs-white); }
+
+/* ══ HERO ════════════════════════════════════ */
+.cs-hero {
+  min-height: 100vh;
+  padding: 72px 0 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+.cs-hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 64px 80px 80px;
+  position: relative;
+  z-index: 2;
+}
+.cs-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--cs-gold);
+  margin-bottom: 32px;
+}
+.cs-hero-badge::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--cs-gold);
+}
+.cs-hero-left h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(42px, 5.5vw, 68px);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--cs-ink);
+  letter-spacing: -1px;
+  margin-bottom: 28px;
+  margin-top: 0;
+}
+.cs-hero-left h1 em { font-style: italic; font-weight: 300; color: var(--cs-ink3); }
+.cs-hero-left h1 strong { font-weight: 600; font-style: normal; color: var(--cs-ink); }
+.cs-hero-desc {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--cs-ink3);
+  line-height: 1.75;
+  max-width: 400px;
+  margin-bottom: 44px;
+  border-left: 2px solid var(--cs-rule);
+  padding-left: 18px;
+}
+.cs-hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.cs-btn-primary {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--cs-white);
+  background: var(--cs-ink);
+  padding: 16px 40px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  display: inline-block;
+}
+.cs-btn-primary:hover { background: var(--cs-ink2); transform: translateY(-1px); color: var(--cs-white); }
+.cs-btn-secondary {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--cs-ink3);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s, gap 0.2s;
+}
+.cs-btn-secondary:hover { color: var(--cs-ink); gap: 12px; }
+.cs-btn-secondary::after { content: '→'; }
+.cs-hero-proof {
+  margin-top: 56px;
+  padding-top: 28px;
+  border-top: 1px solid var(--cs-rule);
+  display: flex;
+  gap: 36px;
+}
+.cs-proof-item { display: flex; flex-direction: column; gap: 2px; }
+.cs-proof-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--cs-ink);
+  line-height: 1;
+}
+.cs-proof-label {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: var(--cs-ink4);
+  text-transform: uppercase;
+}
+.cs-hero-right {
+  position: relative;
+  background: var(--cs-fog);
+  overflow: hidden;
+}
+.cs-hero-right::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--cs-fog) 0%, var(--cs-fog2) 100%);
+}
+.cs-hero-img-slot {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.cs-hero-img-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cs-hero-tag {
+  position: absolute;
+  bottom: 36px;
+  left: 36px;
+  z-index: 2;
+  background: var(--cs-white);
+  border: 1px solid var(--cs-rule);
+  padding: 14px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+.cs-hero-tag .cs-ht-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--cs-gold);
+}
+.cs-hero-tag .cs-ht-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--cs-ink);
+  line-height: 1;
+}
+.cs-hero-tag .cs-ht-sub {
+  font-size: 10px;
+  font-weight: 300;
+  color: var(--cs-ink4);
+}
+
+/* ══ AMBIENT IMAGE ═══════════════════════════ */
+.cs-ambient-img {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  max-height: 480px;
+}
+.cs-ambient-img img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+
+/* ══ THERAPY STRIP ═══════════════════════════ */
+.cs-therapy-strip {
+  border-top: 1px solid var(--cs-rule);
+  border-bottom: 1px solid var(--cs-rule);
+  background: var(--cs-white);
+}
+.cs-therapy-strip-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 0 48px;
+}
+.cs-therapy-cell {
+  padding: 44px 32px;
+  border-right: 1px solid var(--cs-rule);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: background 0.2s;
+}
+.cs-therapy-cell:last-child { border-right: none; }
+.cs-therapy-cell:hover { background: var(--cs-snow); }
+.cs-therapy-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  font-weight: 300;
+  color: var(--cs-ink);
+  opacity: 0.07;
+  line-height: 1;
+  margin: 0;
+}
+.cs-therapy-icon { font-size: 22px; margin-top: -20px; }
+.cs-therapy-cell h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--cs-ink);
+  line-height: 1.2;
+  letter-spacing: -0.2px;
+  margin: 0;
+}
+.cs-therapy-cell p { font-size: 13px; font-weight: 300; color: var(--cs-ink3); line-height: 1.7; margin: 0; }
+.cs-therapy-tag {
+  display: inline-block;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--cs-gold);
+  border: 1px solid var(--cs-fog2);
+  padding: 3px 10px;
+  margin-top: 4px;
+  align-self: flex-start;
+}
+
+/* ══ PRODUCT SECTION ════════════════════════ */
+.cs-product-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.cs-product-img-area { position: relative; }
+.cs-product-main-slot {
+  width: 100%;
+  aspect-ratio: 4/5;
+  background: var(--cs-fog);
+  border: 1px solid var(--cs-rule);
+  overflow: hidden;
+  position: relative;
+}
+.cs-product-main-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cs-product-mini-slot {
+  position: absolute;
+  bottom: -24px;
+  right: -24px;
+  width: 140px;
+  height: 140px;
+  background: var(--cs-white);
+  border: 1px solid var(--cs-rule);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+.cs-product-mini-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cs-product-info { display: flex; flex-direction: column; gap: 0; }
+.cs-eyebrow {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--cs-gold);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.cs-eyebrow::before { content: ''; display: block; width: 20px; height: 1px; background: var(--cs-gold); }
+.cs-product-info h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 3.5vw, 46px);
+  font-weight: 300;
+  color: var(--cs-ink);
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  margin-bottom: 24px;
+  margin-top: 0;
+}
+.cs-product-info h2 strong { font-weight: 700; }
+.cs-product-info h2 em { font-style: italic; }
+.cs-product-desc {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--cs-ink3);
+  line-height: 1.8;
+  margin-bottom: 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--cs-rule);
+}
+.cs-product-features { display: flex; flex-direction: column; gap: 0; margin-bottom: 40px; }
+.cs-feat-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--cs-fog2);
+}
+.cs-feat-check {
+  width: 20px; height: 20px;
+  border: 1px solid var(--cs-ink);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.cs-feat-text { display: flex; flex-direction: column; gap: 1px; }
+.cs-feat-text strong { font-size: 13px; font-weight: 600; color: var(--cs-ink); letter-spacing: 0.2px; }
+.cs-feat-text span { font-size: 12px; font-weight: 300; color: var(--cs-ink4); }
+
+/* ══ HOW IT WORKS ═══════════════════════════ */
+.cs-how-section {
+  background: var(--cs-fog);
+  padding: 100px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.cs-how-section::before {
+  content: 'EMS+';
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 240px;
+  font-weight: 700;
+  color: rgba(0,0,0,0.025);
+  position: absolute;
+  top: -20px; right: -20px;
+  line-height: 1;
+  pointer-events: none;
+  letter-spacing: -8px;
+}
+.cs-how-inner { max-width: 1100px; margin: 0 auto; }
+.cs-section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 60px;
+  gap: 40px;
+}
+.cs-section-header .cs-sh-left .cs-eyebrow { margin-bottom: 12px; }
+.cs-section-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 3.5vw, 44px);
+  font-weight: 300;
+  color: var(--cs-ink);
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+.cs-section-header h2 em { font-style: italic; }
+.cs-section-header .cs-sh-right {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--cs-ink4);
+  max-width: 300px;
+  text-align: right;
+  line-height: 1.6;
+  flex-shrink: 0;
+}
+.cs-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 2px;
+  background: var(--cs-rule);
+}
+.cs-step-card {
+  background: var(--cs-white);
+  padding: 40px 36px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.2s;
+}
+.cs-step-card:hover { background: var(--cs-snow); }
+.cs-step-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--cs-ink);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.cs-step-card:hover::after { transform: scaleX(1); }
+.cs-step-n {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 64px;
+  font-weight: 700;
+  color: var(--cs-ink);
+  opacity: 0.06;
+  line-height: 1;
+  position: absolute;
+  top: 20px; right: 24px;
+}
+.cs-step-img-slot {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: var(--cs-fog);
+  border: 1px solid var(--cs-rule);
+  margin-bottom: 24px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+.cs-step-img-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cs-step-card h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--cs-ink);
+  margin-bottom: 10px;
+  margin-top: 0;
+  line-height: 1.2;
+  position: relative;
+  z-index: 1;
+}
+.cs-step-card p { font-size: 13px; font-weight: 300; color: var(--cs-ink3); line-height: 1.7; position: relative; z-index: 1; margin: 0; }
+
+/* ══ TESTIMONIALS ═══════════════════════════ */
+.cs-testimonials-section { max-width: 1100px; margin: 0 auto; padding: 100px 48px; }
+.cs-testi-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 2px;
+  background: var(--cs-rule);
+  margin-top: 60px;
+}
+.cs-testi-card {
+  background: var(--cs-white);
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: background 0.2s;
+}
+.cs-testi-card:hover { background: var(--cs-snow); }
+.cs-testi-stars { color: var(--cs-gold); font-size: 13px; letter-spacing: 3px; }
+.cs-testi-card blockquote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--cs-ink2);
+  line-height: 1.6;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+.cs-testi-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid var(--cs-rule);
+}
+.cs-testi-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--cs-fog2);
+  border: 1px solid var(--cs-rule);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.cs-testi-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cs-testi-info strong { display: block; font-size: 12px; font-weight: 600; color: var(--cs-ink2); }
+.cs-testi-info span { font-size: 11px; font-weight: 300; color: var(--cs-ink4); }
+
+/* ══ CTA BAND ═══════════════════════════════ */
+.cs-cta-band {
+  background: var(--cs-ink);
+  padding: 80px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.cs-cta-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(-50deg, transparent, transparent 50px, rgba(255,255,255,0.012) 50px, rgba(255,255,255,0.012) 51px);
+}
+.cs-cta-band-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 60px;
+  position: relative;
+  z-index: 1;
+}
+.cs-cta-band .cs-eyebrow { margin-bottom: 14px; }
+.cs-cta-band h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 4vw, 46px);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.12;
+  letter-spacing: -0.5px;
+  margin-bottom: 14px;
+  margin-top: 0;
+}
+.cs-cta-band h2 em { font-style: italic; color: rgba(255,255,255,0.55); }
+.cs-cta-band p { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.4); line-height: 1.65; margin: 0; }
+.cs-cta-band-right { display: flex; flex-direction: column; align-items: flex-end; gap: 14px; flex-shrink: 0; }
+.cs-btn-gold {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--cs-ink);
+  background: var(--cs-gold2);
+  padding: 18px 44px;
+  text-decoration: none;
+  transition: filter 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+.cs-btn-gold:hover { filter: brightness(1.1); transform: translateY(-2px); color: var(--cs-ink); }
+.cs-cta-guarantees { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+.cs-g-item {
+  font-size: 11px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cs-g-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--cs-gold); flex-shrink: 0; }
+
+/* ══ FOOTER ═════════════════════════════════ */
+.cs-footer {
+  background: var(--cs-snow);
+  border-top: 1px solid var(--cs-rule);
+}
+.cs-footer-bar {
+  padding: 22px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.cs-footer-logo-small { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.cs-footer-logo-small .cs-fls-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--cs-ink);
+}
+.cs-footer-logo-small .cs-fls-sep { width: 1px; height: 14px; background: var(--cs-rule2); }
+.cs-footer-logo-small .cs-fls-tag {
+  font-family: 'Jost', sans-serif;
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--cs-ink4);
+}
+.cs-footer-links-row { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
+.cs-footer-links-row a {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--cs-ink4);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.cs-footer-links-row a:hover { color: var(--cs-ink); }
+.cs-footer-wa-link { display: inline-flex !important; align-items: center; gap: 4px; color: var(--cs-ink4) !important; }
+.cs-footer-wa-link:hover { color: #1a7a3a !important; }
+.cs-footer-copy-small { font-size: 11px; font-weight: 300; color: var(--cs-ink5); letter-spacing: 0.2px; }
+
+/* ══ REVEAL ANIMATIONS ══════════════════════ */
+.cs-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(.16,1,.3,1), transform 0.8s cubic-bezier(.16,1,.3,1);
+}
+.cs-reveal.visible { opacity: 1; transform: none; }
+
+/* ══ RESPONSIVE ═════════════════════════════ */
+@media (max-width: 960px) {
+  .cs-hero { grid-template-columns: 1fr; min-height: auto; }
+  .cs-hero-right { display: none; }
+  .cs-hero-left { padding: 60px 32px; }
+  .cs-product-section { grid-template-columns: 1fr; gap: 48px; padding: 64px 28px; }
+  .cs-product-mini-slot { display: none; }
+  .cs-steps-grid { grid-template-columns: 1fr; }
+  .cs-testi-grid { grid-template-columns: 1fr; }
+  .cs-therapy-strip-inner { grid-template-columns: 1fr; padding: 0 28px; }
+  .cs-therapy-cell { border-right: none; border-bottom: 1px solid var(--cs-rule); }
+  .cs-therapy-cell:last-child { border-bottom: none; }
+  .cs-how-section { padding: 64px 28px; }
+  .cs-testimonials-section { padding: 64px 28px; }
+  .cs-cta-band { padding: 60px 28px; }
+  .cs-cta-band-inner { grid-template-columns: 1fr; gap: 36px; }
+  .cs-cta-band-right { align-items: flex-start; }
+  .cs-section-header { flex-direction: column; align-items: flex-start; }
+  .cs-section-header .cs-sh-right { text-align: left; }
+  .cs-nav { padding: 0 24px; }
+  .cs-nav-links { display: none; }
+  .cs-footer-bar { padding: 20px 24px; flex-direction: column; align-items: flex-start; gap: 14px; }
+}
+</style>
+
+<div class="cs-landing">
+
+  <!-- ══ NAV ════════════════════════════════════ -->
+  <nav class="cs-nav">
+    <a href="#" class="cs-nav-logo">
+      <span class="cs-logo-top">{{ section.settings.brand_name }}</span>
+      <div class="cs-logo-rule-wrap">
+        <span class="cs-logo-rule-line"></span>
+        <span class="cs-logo-bottom">{{ section.settings.brand_tag }}</span>
+        <span class="cs-logo-rule-line"></span>
+      </div>
+    </a>
+    <ul class="cs-nav-links">
+      <li><a href="#cs-producto">{{ section.settings.nav_link1 }}</a></li>
+      <li><a href="#cs-como-funciona">{{ section.settings.nav_link2 }}</a></li>
+      <li><a href="#cs-testimonios">{{ section.settings.nav_link3 }}</a></li>
+    </ul>
+    <a href="#cs-comprar" class="cs-nav-cta">{{ section.settings.nav_cta }}</a>
+  </nav>
+
+  <!-- ══ HERO ════════════════════════════════════ -->
+  <section class="cs-hero">
+    <div class="cs-hero-left cs-reveal">
+      <span class="cs-hero-badge">{{ section.settings.hero_badge }}</span>
+      <h1>{{ section.settings.hero_title }}</h1>
+      <p class="cs-hero-desc">{{ section.settings.hero_desc }}</p>
+      <div class="cs-hero-actions">
+        <a href="{{ section.settings.hero_cta_url }}" class="cs-btn-primary">{{ section.settings.hero_cta_text }}</a>
+        <a href="#cs-como-funciona" class="cs-btn-secondary">{{ section.settings.hero_cta2_text }}</a>
+      </div>
+      <div class="cs-hero-proof">
+        <div class="cs-proof-item">
+          <span class="cs-proof-num">{{ section.settings.proof1_num }}</span>
+          <span class="cs-proof-label">{{ section.settings.proof1_label }}</span>
+        </div>
+        <div class="cs-proof-item">
+          <span class="cs-proof-num">{{ section.settings.proof2_num }}</span>
+          <span class="cs-proof-label">{{ section.settings.proof2_label }}</span>
+        </div>
+        <div class="cs-proof-item">
+          <span class="cs-proof-num">{{ section.settings.proof3_num }}</span>
+          <span class="cs-proof-label">{{ section.settings.proof3_label }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="cs-hero-right">
+      <div class="cs-hero-img-slot">
+        {% if section.settings.hero_image != blank %}
+          <img src="{{ section.settings.hero_image | img_url: 'master' }}" alt="{{ section.settings.hero_image.alt | default: section.settings.brand_name }}">
+        {% endif %}
+      </div>
+      <div class="cs-hero-tag">
+        <span class="cs-ht-label">{{ section.settings.hero_tag_label }}</span>
+        <span class="cs-ht-value">{{ section.settings.hero_tag_value }}</span>
+        <span class="cs-ht-sub">{{ section.settings.hero_tag_sub }}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ AMBIENT IMAGE ════════════════════════════ -->
+  {% if section.settings.ambient_image != blank %}
+  <div class="cs-ambient-img">
+    <img src="{{ section.settings.ambient_image | img_url: 'master' }}" alt="{{ section.settings.ambient_image.alt | default: section.settings.brand_name }}">
+  </div>
+  {% endif %}
+
+  <!-- ══ THERAPY STRIP ════════════════════════════ -->
+  <div class="cs-therapy-strip cs-reveal">
+    <div class="cs-therapy-strip-inner">
+      <div class="cs-therapy-cell">
+        <div class="cs-therapy-num">01</div>
+        <span class="cs-therapy-icon">{{ section.settings.therapy1_icon }}</span>
+        <h3>{{ section.settings.therapy1_title }}</h3>
+        <p>{{ section.settings.therapy1_desc }}</p>
+        <span class="cs-therapy-tag">{{ section.settings.therapy1_tag }}</span>
+      </div>
+      <div class="cs-therapy-cell">
+        <div class="cs-therapy-num">02</div>
+        <span class="cs-therapy-icon">{{ section.settings.therapy2_icon }}</span>
+        <h3>{{ section.settings.therapy2_title }}</h3>
+        <p>{{ section.settings.therapy2_desc }}</p>
+        <span class="cs-therapy-tag">{{ section.settings.therapy2_tag }}</span>
+      </div>
+      <div class="cs-therapy-cell">
+        <div class="cs-therapy-num">03</div>
+        <span class="cs-therapy-icon">{{ section.settings.therapy3_icon }}</span>
+        <h3>{{ section.settings.therapy3_title }}</h3>
+        <p>{{ section.settings.therapy3_desc }}</p>
+        <span class="cs-therapy-tag">{{ section.settings.therapy3_tag }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PRODUCT ══════════════════════════════════ -->
+  <section class="cs-product-section" id="cs-producto">
+    <div class="cs-product-img-area cs-reveal">
+      <div class="cs-product-main-slot">
+        {% if section.settings.product_image != blank %}
+          <img src="{{ section.settings.product_image | img_url: 'master' }}" alt="{{ section.settings.product_image.alt | default: section.settings.product_title }}">
+        {% endif %}
+      </div>
+      {% if section.settings.product_image2 != blank %}
+      <div class="cs-product-mini-slot">
+        <img src="{{ section.settings.product_image2 | img_url: 'master' }}" alt="{{ section.settings.product_image2.alt | default: '' }}">
+      </div>
+      {% endif %}
+    </div>
+    <div class="cs-product-info cs-reveal">
+      <span class="cs-eyebrow">{{ section.settings.product_eyebrow }}</span>
+      <h2>{{ section.settings.product_title }}</h2>
+      <p class="cs-product-desc">{{ section.settings.product_desc }}</p>
+      <div class="cs-product-features">
+        {% for i in (1..5) %}
+          {% assign feat_title = 'feat' | append: i | append: '_title' %}
+          {% assign feat_sub   = 'feat' | append: i | append: '_sub' %}
+          {% if section.settings[feat_title] != blank %}
+          <div class="cs-feat-row">
+            <span class="cs-feat-check">✓</span>
+            <div class="cs-feat-text">
+              <strong>{{ section.settings[feat_title] }}</strong>
+              <span>{{ section.settings[feat_sub] }}</span>
+            </div>
+          </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <a href="{{ section.settings.product_cta_url }}" class="cs-btn-primary">{{ section.settings.product_cta_text }}</a>
+    </div>
+  </section>
+
+  <!-- ══ HOW IT WORKS ══════════════════════════════ -->
+  <section class="cs-how-section" id="cs-como-funciona">
+    <div class="cs-how-inner">
+      <div class="cs-section-header cs-reveal">
+        <div class="cs-sh-left">
+          <div class="cs-eyebrow">{{ section.settings.how_eyebrow }}</div>
+          <h2>{{ section.settings.how_title }}</h2>
+        </div>
+        <div class="cs-sh-right">{{ section.settings.how_subtitle }}</div>
+      </div>
+      <div class="cs-steps-grid cs-reveal">
+        <div class="cs-step-card">
+          <span class="cs-step-n">1</span>
+          {% if section.settings.step1_image != blank %}
+          <div class="cs-step-img-slot">
+            <img src="{{ section.settings.step1_image | img_url: 'master' }}" alt="{{ section.settings.step1_title }}">
+          </div>
+          {% endif %}
+          <h4>{{ section.settings.step1_title }}</h4>
+          <p>{{ section.settings.step1_desc }}</p>
+        </div>
+        <div class="cs-step-card">
+          <span class="cs-step-n">2</span>
+          {% if section.settings.step2_image != blank %}
+          <div class="cs-step-img-slot">
+            <img src="{{ section.settings.step2_image | img_url: 'master' }}" alt="{{ section.settings.step2_title }}">
+          </div>
+          {% endif %}
+          <h4>{{ section.settings.step2_title }}</h4>
+          <p>{{ section.settings.step2_desc }}</p>
+        </div>
+        <div class="cs-step-card">
+          <span class="cs-step-n">3</span>
+          {% if section.settings.step3_image != blank %}
+          <div class="cs-step-img-slot">
+            <img src="{{ section.settings.step3_image | img_url: 'master' }}" alt="{{ section.settings.step3_title }}">
+          </div>
+          {% endif %}
+          <h4>{{ section.settings.step3_title }}</h4>
+          <p>{{ section.settings.step3_desc }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TESTIMONIALS ══════════════════════════════ -->
+  <section class="cs-testimonials-section" id="cs-testimonios">
+    <div class="cs-section-header cs-reveal">
+      <div class="cs-sh-left">
+        <div class="cs-eyebrow">{{ section.settings.testi_eyebrow }}</div>
+        <h2>{{ section.settings.testi_title }}</h2>
+      </div>
+      <div class="cs-sh-right">{{ section.settings.testi_subtitle }}</div>
+    </div>
+    <div class="cs-testi-grid cs-reveal">
+      {% for i in (1..3) %}
+        {% assign testi_stars  = 'testi' | append: i | append: '_stars' %}
+        {% assign testi_quote  = 'testi' | append: i | append: '_quote' %}
+        {% assign testi_name   = 'testi' | append: i | append: '_name' %}
+        {% assign testi_loc    = 'testi' | append: i | append: '_location' %}
+        {% assign testi_avatar = 'testi' | append: i | append: '_avatar' %}
+        <div class="cs-testi-card">
+          <div class="cs-testi-stars">{{ section.settings[testi_stars] }}</div>
+          <blockquote>{{ section.settings[testi_quote] }}</blockquote>
+          <div class="cs-testi-author">
+            {% if section.settings[testi_avatar] != blank %}
+            <div class="cs-testi-avatar">
+              <img src="{{ section.settings[testi_avatar] | img_url: '80x80', crop: 'center' }}" alt="{{ section.settings[testi_name] }}">
+            </div>
+            {% endif %}
+            <div class="cs-testi-info">
+              <strong>{{ section.settings[testi_name] }}</strong>
+              <span>{{ section.settings[testi_loc] }}</span>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- ══ CTA BAND ══════════════════════════════════ -->
+  <section class="cs-cta-band" id="cs-comprar">
+    <div class="cs-cta-band-inner">
+      <div class="cs-reveal">
+        <div class="cs-eyebrow" style="color:var(--cs-gold);">{{ section.settings.cta_eyebrow }}</div>
+        <h2>{{ section.settings.cta_title }}</h2>
+        <p>{{ section.settings.cta_desc }}</p>
+      </div>
+      <div class="cs-cta-band-right cs-reveal">
+        <a href="{{ section.settings.cta_button_url }}" class="cs-btn-gold">{{ section.settings.cta_button_text }}</a>
+        <div class="cs-cta-guarantees">
+          {% if section.settings.guarantee1 != blank %}<div class="cs-g-item"><span class="cs-g-dot"></span> {{ section.settings.guarantee1 }}</div>{% endif %}
+          {% if section.settings.guarantee2 != blank %}<div class="cs-g-item"><span class="cs-g-dot"></span> {{ section.settings.guarantee2 }}</div>{% endif %}
+          {% if section.settings.guarantee3 != blank %}<div class="cs-g-item"><span class="cs-g-dot"></span> {{ section.settings.guarantee3 }}</div>{% endif %}
+          {% if section.settings.guarantee4 != blank %}<div class="cs-g-item"><span class="cs-g-dot"></span> {{ section.settings.guarantee4 }}</div>{% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ════════════════════════════════════ -->
+  <footer class="cs-footer">
+    <div class="cs-footer-bar">
+      <a href="#" class="cs-footer-logo-small">
+        <span class="cs-fls-name">{{ section.settings.brand_name }}</span>
+        <span class="cs-fls-sep"></span>
+        <span class="cs-fls-tag">{{ section.settings.brand_tag }}</span>
+      </a>
+      <ul class="cs-footer-links-row">
+        {% if section.settings.footer_link1_text != blank %}<li><a href="{{ section.settings.footer_link1_url }}">{{ section.settings.footer_link1_text }}</a></li>{% endif %}
+        {% if section.settings.footer_link2_text != blank %}<li><a href="{{ section.settings.footer_link2_url }}">{{ section.settings.footer_link2_text }}</a></li>{% endif %}
+        {% if section.settings.footer_link3_text != blank %}<li><a href="{{ section.settings.footer_link3_url }}">{{ section.settings.footer_link3_text }}</a></li>{% endif %}
+        {% if section.settings.footer_whatsapp != blank %}
+        <li>
+          <a href="https://wa.me/{{ section.settings.footer_whatsapp | remove: '+' | remove: ' ' | remove: '-' }}" target="_blank" class="cs-footer-wa-link">
+            <svg viewBox="0 0 24 24" width="10" height="10" style="flex-shrink:0;margin-bottom:1px;"><path d="M20.52 3.48A11.93 11.93 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.99L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.21-1.25-6.22-3.48-8.52z" fill="#25D366"/><path d="M17.47 14.38c-.28-.14-1.65-.81-1.9-.9-.26-.1-.44-.14-.63.14-.19.28-.72.9-.88 1.08-.16.19-.33.21-.61.07-.28-.14-1.18-.44-2.25-1.39-.83-.74-1.39-1.66-1.56-1.94-.16-.28-.02-.43.12-.57.13-.13.28-.33.42-.5.14-.17.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.63-1.51-.86-2.07-.23-.54-.46-.47-.63-.47-.16 0-.35-.02-.54-.02s-.49.07-.75.36c-.26.28-1 .98-1 2.39s1.02 2.77 1.16 2.96c.14.19 2.01 3.07 4.87 4.3.68.29 1.21.47 1.63.6.68.22 1.3.19 1.79.11.55-.08 1.68-.69 1.92-1.35.24-.66.24-1.23.17-1.35-.07-.12-.26-.19-.54-.33z" fill="white"/></svg>
+            Soporte
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+      <span class="cs-footer-copy-small">{{ section.settings.footer_copyright }}</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // Scroll reveal
+  (function(){
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.cs-reveal').forEach(function(el, i){
+      el.style.transitionDelay = (i < 3 ? i * 0.08 : 0) + 's';
+      observer.observe(el);
+    });
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#cs-"]').forEach(function(a){
+      a.addEventListener('click', function(e){
+        var target = document.querySelector(a.getAttribute('href'));
+        if(target){ e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Calm Step Landing",
+  "tag": "section",
+  "class": "cs-landing-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "🔤 Marca"
+    },
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Nombre de marca",
+      "default": "Calm Step"
+    },
+    {
+      "type": "text",
+      "id": "brand_tag",
+      "label": "Tag de marca",
+      "default": "EMS+"
+    },
+
+    {
+      "type": "header",
+      "content": "🧭 Navegación"
+    },
+    {
+      "type": "text",
+      "id": "nav_link1",
+      "label": "Link 1",
+      "default": "Producto"
+    },
+    {
+      "type": "text",
+      "id": "nav_link2",
+      "label": "Link 2",
+      "default": "Cómo funciona"
+    },
+    {
+      "type": "text",
+      "id": "nav_link3",
+      "label": "Link 3",
+      "default": "Testimonios"
+    },
+    {
+      "type": "text",
+      "id": "nav_cta",
+      "label": "Botón CTA nav",
+      "default": "Comprar ahora"
+    },
+
+    {
+      "type": "header",
+      "content": "🦸 Hero"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Imagen hero (derecha)"
+    },
+    {
+      "type": "text",
+      "id": "hero_badge",
+      "label": "Badge / etiqueta superior",
+      "default": "Triple Therapy Technology"
+    },
+    {
+      "type": "richtext",
+      "id": "hero_title",
+      "label": "Título hero (HTML permitido: em, strong, br)",
+      "default": "<p>El descanso que<br>tus pies <em>llevan</em><br><strong>meses esperando</strong></p>"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_desc",
+      "label": "Descripción hero",
+      "default": "EMS + calor terapéutico + compresión activa. Tres terapias clínicas en un solo dispositivo portátil. 15 minutos al día, sentado, en casa."
+    },
+    {
+      "type": "text",
+      "id": "hero_cta_text",
+      "label": "Botón principal — texto",
+      "default": "Comprar ahora"
+    },
+    {
+      "type": "url",
+      "id": "hero_cta_url",
+      "label": "Botón principal — URL"
+    },
+    {
+      "type": "text",
+      "id": "hero_cta2_text",
+      "label": "Botón secundario — texto",
+      "default": "Ver cómo funciona"
+    },
+    {
+      "type": "text",
+      "id": "proof1_num",
+      "label": "Prueba 1 — número",
+      "default": "3"
+    },
+    {
+      "type": "text",
+      "id": "proof1_label",
+      "label": "Prueba 1 — texto",
+      "default": "Terapias en una"
+    },
+    {
+      "type": "text",
+      "id": "proof2_num",
+      "label": "Prueba 2 — número",
+      "default": "15'"
+    },
+    {
+      "type": "text",
+      "id": "proof2_label",
+      "label": "Prueba 2 — texto",
+      "default": "Al día"
+    },
+    {
+      "type": "text",
+      "id": "proof3_num",
+      "label": "Prueba 3 — número",
+      "default": "30d"
+    },
+    {
+      "type": "text",
+      "id": "proof3_label",
+      "label": "Prueba 3 — texto",
+      "default": "Garantía total"
+    },
+    {
+      "type": "text",
+      "id": "hero_tag_label",
+      "label": "Tarjeta flotante — etiqueta",
+      "default": "Disponible ahora"
+    },
+    {
+      "type": "text",
+      "id": "hero_tag_value",
+      "label": "Tarjeta flotante — valor",
+      "default": "Calm Step EMS+"
+    },
+    {
+      "type": "text",
+      "id": "hero_tag_sub",
+      "label": "Tarjeta flotante — subtítulo",
+      "default": "Triple Therapy Foot Massager"
+    },
+
+    {
+      "type": "header",
+      "content": "🖼 Imagen ambiental (ancho completo)"
+    },
+    {
+      "type": "image_picker",
+      "id": "ambient_image",
+      "label": "Imagen ambiental"
+    },
+
+    {
+      "type": "header",
+      "content": "⚡ Terapias (Strip)"
+    },
+    {
+      "type": "text",
+      "id": "therapy1_icon",
+      "label": "Terapia 1 — ícono",
+      "default": "⚡"
+    },
+    {
+      "type": "text",
+      "id": "therapy1_title",
+      "label": "Terapia 1 — título",
+      "default": "Estimulación Muscular EMS"
+    },
+    {
+      "type": "textarea",
+      "id": "therapy1_desc",
+      "label": "Terapia 1 — descripción",
+      "default": "Activa la bomba músculo-venosa de forma pasiva. Mejora el retorno circulatorio mientras estás sentado."
+    },
+    {
+      "type": "text",
+      "id": "therapy1_tag",
+      "label": "Terapia 1 — tag",
+      "default": "Circulación activa"
+    },
+    {
+      "type": "text",
+      "id": "therapy2_icon",
+      "label": "Terapia 2 — ícono",
+      "default": "🌡"
+    },
+    {
+      "type": "text",
+      "id": "therapy2_title",
+      "label": "Terapia 2 — título",
+      "default": "Calor Terapéutico Controlado"
+    },
+    {
+      "type": "textarea",
+      "id": "therapy2_desc",
+      "label": "Terapia 2 — descripción",
+      "default": "Vasodilatación local y liberación de tensión muscular profunda. Calor directo donde más se necesita."
+    },
+    {
+      "type": "text",
+      "id": "therapy2_tag",
+      "label": "Terapia 2 — tag",
+      "default": "Alivio de tensión"
+    },
+    {
+      "type": "text",
+      "id": "therapy3_icon",
+      "label": "Terapia 3 — ícono",
+      "default": "◎"
+    },
+    {
+      "type": "text",
+      "id": "therapy3_title",
+      "label": "Terapia 3 — título",
+      "default": "Compresión Envolvente"
+    },
+    {
+      "type": "textarea",
+      "id": "therapy3_desc",
+      "label": "Terapia 3 — descripción",
+      "default": "Presión uniforme que apoya el retorno venoso y reduce la sensación de pesadez e hinchazón."
+    },
+    {
+      "type": "text",
+      "id": "therapy3_tag",
+      "label": "Terapia 3 — tag",
+      "default": "Retorno venoso"
+    },
+
+    {
+      "type": "header",
+      "content": "📦 Sección Producto"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Imagen principal del producto"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image2",
+      "label": "Imagen secundaria (mini flotante)"
+    },
+    {
+      "type": "text",
+      "id": "product_eyebrow",
+      "label": "Eyebrow",
+      "default": "El dispositivo"
+    },
+    {
+      "type": "richtext",
+      "id": "product_title",
+      "label": "Título producto",
+      "default": "<p><strong>Calm Step</strong><br>Triple Therapy<br><em>Foot Massager</em></p>"
+    },
+    {
+      "type": "textarea",
+      "id": "product_desc",
+      "label": "Descripción producto",
+      "default": "Diseñado para quienes viven con ardor, hormigueo, entumecimiento o fatiga crónica en los pies. Sin pastillas, sin citas, sin salir de casa."
+    },
+    {
+      "type": "text",
+      "id": "feat1_title",
+      "label": "Feature 1 — título",
+      "default": "Estimulación EMS integrada"
+    },
+    {
+      "type": "text",
+      "id": "feat1_sub",
+      "label": "Feature 1 — subtítulo",
+      "default": "Impulsos suaves que activan la circulación naturalmente"
+    },
+    {
+      "type": "text",
+      "id": "feat2_title",
+      "label": "Feature 2 — título",
+      "default": "3 niveles de calor ajustable"
+    },
+    {
+      "type": "text",
+      "id": "feat2_sub",
+      "label": "Feature 2 — subtítulo",
+      "default": "Temperatura controlada para cada tipo de sensibilidad"
+    },
+    {
+      "type": "text",
+      "id": "feat3_title",
+      "label": "Feature 3 — título",
+      "default": "Compresión wrap envolvente"
+    },
+    {
+      "type": "text",
+      "id": "feat3_sub",
+      "label": "Feature 3 — subtítulo",
+      "default": "Soporte activo para pie y tobillo"
+    },
+    {
+      "type": "text",
+      "id": "feat4_title",
+      "label": "Feature 4 — título",
+      "default": "Portátil, inalámbrico, USB-C"
+    },
+    {
+      "type": "text",
+      "id": "feat4_sub",
+      "label": "Feature 4 — subtítulo",
+      "default": "Úsalo en el sofá, en tu escritorio, en cualquier lugar"
+    },
+    {
+      "type": "text",
+      "id": "feat5_title",
+      "label": "Feature 5 — título",
+      "default": "Sesiones de 15–20 minutos"
+    },
+    {
+      "type": "text",
+      "id": "feat5_sub",
+      "label": "Feature 5 — subtítulo",
+      "default": "Efecto acumulativo con uso diario consistente"
+    },
+    {
+      "type": "text",
+      "id": "product_cta_text",
+      "label": "Botón producto — texto",
+      "default": "Quiero el mío"
+    },
+    {
+      "type": "url",
+      "id": "product_cta_url",
+      "label": "Botón producto — URL"
+    },
+
+    {
+      "type": "header",
+      "content": "⚙️ Cómo funciona"
+    },
+    {
+      "type": "text",
+      "id": "how_eyebrow",
+      "label": "Eyebrow",
+      "default": "Cómo funciona"
+    },
+    {
+      "type": "richtext",
+      "id": "how_title",
+      "label": "Título",
+      "default": "<p>Simple. Pasivo.<br><em>Efectivo cada noche.</em></p>"
+    },
+    {
+      "type": "textarea",
+      "id": "how_subtitle",
+      "label": "Subtítulo (derecha)",
+      "default": "Sin protocolo complicado. Sin equipos de clínica. Solo tres pasos para que tu cuerpo recupere lo que le falta."
+    },
+    {
+      "type": "image_picker",
+      "id": "step1_image",
+      "label": "Paso 1 — imagen"
+    },
+    {
+      "type": "text",
+      "id": "step1_title",
+      "label": "Paso 1 — título",
+      "default": "Ponte cómodo y coloca el dispositivo"
+    },
+    {
+      "type": "textarea",
+      "id": "step1_desc",
+      "label": "Paso 1 — descripción",
+      "default": "Siéntate en tu sillón o cama. Introduce el pie en el dispositivo Calm Step. No necesitas preparación previa."
+    },
+    {
+      "type": "image_picker",
+      "id": "step2_image",
+      "label": "Paso 2 — imagen"
+    },
+    {
+      "type": "text",
+      "id": "step2_title",
+      "label": "Paso 2 — título",
+      "default": "Selecciona tu nivel y enciéndelo"
+    },
+    {
+      "type": "textarea",
+      "id": "step2_desc",
+      "label": "Paso 2 — descripción",
+      "default": "Elige la intensidad EMS y el nivel de calor que prefieras. Empieza siempre en el nivel más bajo hasta conocer tu tolerancia."
+    },
+    {
+      "type": "image_picker",
+      "id": "step3_image",
+      "label": "Paso 3 — imagen"
+    },
+    {
+      "type": "text",
+      "id": "step3_title",
+      "label": "Paso 3 — título",
+      "default": "15–20 minutos. Deja que trabaje."
+    },
+    {
+      "type": "textarea",
+      "id": "step3_desc",
+      "label": "Paso 3 — descripción",
+      "default": "Lee, mira televisión, descansa. La Triple Terapia actúa sola. Repite cada día para el efecto acumulativo."
+    },
+
+    {
+      "type": "header",
+      "content": "💬 Testimonios"
+    },
+    {
+      "type": "text",
+      "id": "testi_eyebrow",
+      "label": "Eyebrow",
+      "default": "Testimonios"
+    },
+    {
+      "type": "richtext",
+      "id": "testi_title",
+      "label": "Título",
+      "default": "<p>Lo que dicen quienes<br><em>ya lo usan</em></p>"
+    },
+    {
+      "type": "textarea",
+      "id": "testi_subtitle",
+      "label": "Subtítulo (derecha)",
+      "default": "Resultados reales de personas reales. Individuales y variables — pero el patrón es consistente."
+    },
+    {
+      "type": "text",
+      "id": "testi1_stars",
+      "label": "Testimonio 1 — estrellas",
+      "default": "★★★★★"
+    },
+    {
+      "type": "textarea",
+      "id": "testi1_quote",
+      "label": "Testimonio 1 — cita",
+      "default": "\"Cuatro años con ardor nocturno. A partir de la tercera semana empecé a dormirme sin esperar que apareciera. No desapareció todo, pero bajó de intensidad y volvió el descanso.\""
+    },
+    {
+      "type": "text",
+      "id": "testi1_name",
+      "label": "Testimonio 1 — nombre",
+      "default": "Silvia M., 61 años"
+    },
+    {
+      "type": "text",
+      "id": "testi1_location",
+      "label": "Testimonio 1 — ubicación",
+      "default": "Santiago, Chile · Neuropatía idiopática"
+    },
+    {
+      "type": "image_picker",
+      "id": "testi1_avatar",
+      "label": "Testimonio 1 — foto (opcional)"
+    },
+    {
+      "type": "text",
+      "id": "testi2_stars",
+      "label": "Testimonio 2 — estrellas",
+      "default": "★★★★★"
+    },
+    {
+      "type": "textarea",
+      "id": "testi2_quote",
+      "label": "Testimonio 2 — cita",
+      "default": "\"Diabetes tipo 2 y hormigueo en los pies desde hace tres años. Mi médico me dio el visto bueno. A las dos semanas ya notaba la diferencia en las noches. Lo uso antes de dormir, todos los días.\""
+    },
+    {
+      "type": "text",
+      "id": "testi2_name",
+      "label": "Testimonio 2 — nombre",
+      "default": "Héctor R., 58 años"
+    },
+    {
+      "type": "text",
+      "id": "testi2_location",
+      "label": "Testimonio 2 — ubicación",
+      "default": "Ciudad de México · Neuropatía diabética leve"
+    },
+    {
+      "type": "image_picker",
+      "id": "testi2_avatar",
+      "label": "Testimonio 2 — foto (opcional)"
+    },
+    {
+      "type": "text",
+      "id": "testi3_stars",
+      "label": "Testimonio 3 — estrellas",
+      "default": "★★★★☆"
+    },
+    {
+      "type": "textarea",
+      "id": "testi3_quote",
+      "label": "Testimonio 3 — cita",
+      "default": "\"Era completamente escéptico. Le di los 30 días de garantía. La tercera semana cambió algo. El entumecimiento bajó de intensidad y duermo mejor. Eso ya justifica todo para mí.\""
+    },
+    {
+      "type": "text",
+      "id": "testi3_name",
+      "label": "Testimonio 3 — nombre",
+      "default": "Carlos V., 54 años"
+    },
+    {
+      "type": "text",
+      "id": "testi3_location",
+      "label": "Testimonio 3 — ubicación",
+      "default": "Bogotá, Colombia · Entumecimiento bilateral"
+    },
+    {
+      "type": "image_picker",
+      "id": "testi3_avatar",
+      "label": "Testimonio 3 — foto (opcional)"
+    },
+
+    {
+      "type": "header",
+      "content": "🟡 CTA Band (sección comprar)"
+    },
+    {
+      "type": "text",
+      "id": "cta_eyebrow",
+      "label": "Eyebrow",
+      "default": "Calm Step EMS+"
+    },
+    {
+      "type": "richtext",
+      "id": "cta_title",
+      "label": "Título",
+      "default": "<p>Empieza esta noche.<br><em>30 días para comprobarlo</em><br>o te devolvemos todo.</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "cta_desc",
+      "label": "Descripción",
+      "default": "Sin riesgo. Sin suscripciones. Sin letra pequeña. Solo la Triple Terapia que tus pies llevan esperando."
+    },
+    {
+      "type": "text",
+      "id": "cta_button_text",
+      "label": "Botón — texto",
+      "default": "Comprar ahora →"
+    },
+    {
+      "type": "url",
+      "id": "cta_button_url",
+      "label": "Botón — URL"
+    },
+    {
+      "type": "text",
+      "id": "guarantee1",
+      "label": "Garantía 1",
+      "default": "Garantía de devolución 30 días"
+    },
+    {
+      "type": "text",
+      "id": "guarantee2",
+      "label": "Garantía 2",
+      "default": "Sin suscripciones ocultas"
+    },
+    {
+      "type": "text",
+      "id": "guarantee3",
+      "label": "Garantía 3",
+      "default": "Envío a toda Latinoamérica"
+    },
+    {
+      "type": "text",
+      "id": "guarantee4",
+      "label": "Garantía 4",
+      "default": "Pago seguro verificado"
+    },
+
+    {
+      "type": "header",
+      "content": "🔗 Footer"
+    },
+    {
+      "type": "text",
+      "id": "footer_link1_text",
+      "label": "Link 1 — texto",
+      "default": "Privacidad"
+    },
+    {
+      "type": "url",
+      "id": "footer_link1_url",
+      "label": "Link 1 — URL"
+    },
+    {
+      "type": "text",
+      "id": "footer_link2_text",
+      "label": "Link 2 — texto",
+      "default": "Términos"
+    },
+    {
+      "type": "url",
+      "id": "footer_link2_url",
+      "label": "Link 2 — URL"
+    },
+    {
+      "type": "text",
+      "id": "footer_link3_text",
+      "label": "Link 3 — texto",
+      "default": "Devoluciones"
+    },
+    {
+      "type": "url",
+      "id": "footer_link3_url",
+      "label": "Link 3 — URL"
+    },
+    {
+      "type": "text",
+      "id": "footer_whatsapp",
+      "label": "WhatsApp — número (con código de país)",
+      "default": "+1234567890"
+    },
+    {
+      "type": "text",
+      "id": "footer_copyright",
+      "label": "Copyright",
+      "default": "© 2025 Calm Step EMS+. Todos los derechos reservados."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Calm Step Landing"
+    }
+  ]
+}
+{% endschema %}
