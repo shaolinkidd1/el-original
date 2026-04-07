@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "main": {
+      "type": "calmstep-landing-v2",
+      "settings": {
+        "cta_url": "/cart",
+        "checkout_url": "/checkout",
+        "url_tienda": "/",
+        "url_privacidad": "/policies/privacy-policy",
+        "url_terminos": "/policies/terms-of-service",
+        "url_devoluciones": "/policies/refund-policy",
+        "whatsapp_numero": "1234567890"
+      }
+    }
+  },
+  "order": ["main"]
+}
