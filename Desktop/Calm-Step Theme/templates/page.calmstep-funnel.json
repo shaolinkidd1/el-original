@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "calmstep-funnel",
+      "settings": {
+        "cta_url": "/products/",
+        "url_tienda": "/",
+        "url_privacidad": "/policies/privacy-policy",
+        "url_terminos": "/policies/terms-of-service",
+        "url_devoluciones": "/policies/refund-policy",
+        "whatsapp_numero": "1234567890"
+      }
+    }
+  },
+  "order": ["main"]
+}
