@@ -1,0 +1,648 @@
+{ 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Mulish:wght@300;400;500;600;700&display=swap' | stylesheet_tag }
+
+<style>
+
+:root{
+  --ink:#0d0d0b;--ink2:#252520;--ink3:#4a4a44;--ink4:#8a8a82;--ink5:#b8b8b0;
+  --white:#fff;--snow:#f9f8f6;--fog:#f3f1ed;--fog2:#e8e5de;--rule:#dedad2;--rule2:#c8c4ba;
+  --navy:#0f1f35;--navy2:#1a3050;
+  --gold:#b09060;--gold2:#c8aa78;
+  --green:#1a7a3a;--green-lt:#edfbf2;
+  --red:#c0392b;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--white);color:var(--ink);
+  font-family:'Mulish',sans-serif;font-size:15px;line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  /* prevent horizontal scroll */
+  overflow-x:hidden;
+  /* room for sticky bottom */
+  padding-bottom:80px;
+}
+
+/* ── URGENCY ── */
+.urgency{
+  background:var(--navy);color:#fff;
+  padding:9px 16px;text-align:center;
+  font-size:11px;font-weight:600;letter-spacing:1px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  position:sticky;top:0;z-index:200;
+}
+.u-dot{width:6px;height:6px;border-radius:50%;background:#25D366;flex-shrink:0;animation:blink 1.4s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.35;}}
+.u-timer{background:rgba(255,255,255,.14);padding:2px 10px;font-weight:700;letter-spacing:1.5px;border-radius:2px;}
+
+/* ── NAV ── */
+nav{
+  border-bottom:1px solid var(--rule);
+  padding:0 18px;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--white);
+}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:21px;font-weight:700;letter-spacing:5px;
+  text-transform:uppercase;color:var(--ink);text-decoration:none;line-height:1;
+}
+.nav-logo small{font-size:9px;font-weight:400;letter-spacing:4px;color:var(--ink4);display:block;text-align:center;}
+.nav-cart{
+  position:relative;width:40px;height:40px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;background:none;border:none;
+}
+.nav-cart svg{width:22px;height:22px;stroke:var(--ink);fill:none;stroke-width:1.5;}
+.nav-cart-count{
+  position:absolute;top:4px;right:4px;
+  width:16px;height:16px;border-radius:50%;
+  background:var(--red);color:#fff;
+  font-size:9px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  line-height:1;
+}
+
+/* ── HERO IMAGE ── */
+.hero-img{
+  width:100%;aspect-ratio:1/1;overflow:hidden;position:relative;
+  background:var(--fog);
+}
+.hero-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.hero-disc-badge{
+  position:absolute;top:14px;left:14px;
+  background:var(--red);color:#fff;
+  font-size:10px;font-weight:700;letter-spacing:2px;
+  padding:5px 12px;
+}
+
+/* ── PRODUCT INFO ── */
+.product-info{padding:20px 16px 0;}
+.pi-eyebrow{font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.pi-eyebrow::before{content:'';display:block;width:14px;height:1px;background:var(--gold);}
+.pi-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;line-height:1.1;color:var(--ink);margin-bottom:10px;}
+.pi-title em{font-style:italic;font-weight:400;color:var(--ink3);}
+.pi-stars{display:flex;align-items:center;gap:6px;margin-bottom:14px;}
+.pi-stars .stars{color:var(--gold);font-size:13px;letter-spacing:2px;}
+.pi-stars span{font-size:12px;color:var(--ink4);}
+
+/* ── PRICE ── */
+.price-wrap{background:var(--fog);border-radius:8px;padding:16px;margin-bottom:16px;}
+.price-was{font-size:12px;color:var(--ink4);text-decoration:line-through;font-weight:300;margin-bottom:3px;}
+.price-row{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+.price-now{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:700;color:var(--ink);line-height:1;}
+.price-save{background:var(--red);color:#fff;font-size:9px;font-weight:700;letter-spacing:1.5px;padding:3px 9px;}
+.price-ship{font-size:12px;color:var(--green);font-weight:600;display:flex;align-items:center;gap:4px;}
+.price-ship svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;}
+
+/* ── QUANTITY OFFERS ── */
+.qty-section{margin-bottom:16px;}
+.qty-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;}
+.qty-grid{display:flex;flex-direction:column;gap:8px;}
+.qty-card{
+  border:1.5px solid var(--rule);border-radius:8px;
+  padding:12px 14px;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;transition:border-color .2s,background .2s;
+  position:relative;
+}
+.qty-card:hover{border-color:var(--navy);}
+.qty-card.selected{border-color:var(--navy);background:var(--snow);}
+.qty-card.popular{border-color:var(--gold);}
+.qty-badge{
+  position:absolute;top:-9px;left:14px;
+  background:var(--gold);color:var(--navy);
+  font-size:8px;font-weight:700;letter-spacing:2px;
+  padding:2px 10px;
+}
+.qty-radio{
+  width:18px;height:18px;border-radius:50%;
+  border:2px solid var(--rule2);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  transition:border-color .2s;
+}
+.qty-card.selected .qty-radio{border-color:var(--navy);background:var(--navy);}
+.qty-radio::after{
+  content:'';width:7px;height:7px;border-radius:50%;
+  background:var(--white);opacity:0;transition:opacity .15s;
+}
+.qty-card.selected .qty-radio::after{opacity:1;}
+.qty-info{flex:1;}
+.qty-info strong{font-size:13px;font-weight:600;color:var(--ink);display:block;}
+.qty-info span{font-size:11px;font-weight:300;color:var(--ink4);}
+.qty-price-col{text-align:right;}
+.qty-price{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--ink);line-height:1;}
+.qty-per{font-size:10px;color:var(--ink4);font-weight:300;}
+.qty-save-chip{font-size:9px;font-weight:700;color:var(--red);letter-spacing:.5px;}
+
+/* ── BUTTONS ── */
+.btn-wrap{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+.btn-cart{
+  width:100%;padding:16px;border:2px solid var(--navy);
+  background:var(--white);color:var(--navy);
+  font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+  cursor:pointer;transition:background .2s,color .2s;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.btn-cart:hover{background:var(--navy);color:#fff;}
+.btn-buy{
+  width:100%;padding:16px;border:none;
+  background:var(--navy);color:#fff;
+  font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+  cursor:pointer;transition:background .2s,transform .1s;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.btn-buy:hover{background:var(--navy2);transform:translateY(-1px);}
+
+/* ── PAYMENT BADGES ── */
+.pay-row{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;padding:10px 0 16px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);margin-bottom:20px;}
+.pay-badge{font-size:10px;font-weight:600;color:var(--ink4);border:1px solid var(--rule);padding:4px 10px;}
+
+/* ── TRUST STRIP ── */
+.trust-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--rule);margin-bottom:24px;}
+.trust-item{padding:14px 8px;text-align:center;border-right:1px solid var(--rule);}
+.trust-item:last-child{border-right:none;}
+.trust-item svg{width:18px;height:18px;stroke:var(--green);fill:none;stroke-width:1.5;margin:0 auto 5px;display:block;}
+.trust-item strong{font-size:11px;font-weight:600;color:var(--ink);display:block;}
+.trust-item span{font-size:10px;font-weight:300;color:var(--ink4);}
+
+/* ── SECTION ── */
+.sec{padding:32px 16px;border-top:1px solid var(--rule);}
+.sec-eyebrow{font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.sec-eyebrow::before{content:'';display:block;width:14px;height:1px;background:var(--gold);}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--ink);line-height:1.12;margin-bottom:8px;}
+.sec-title em{font-style:italic;font-weight:400;}
+.sec-body{font-size:14px;font-weight:300;color:var(--ink3);line-height:1.75;}
+
+/* ── PROBLEMS ── */
+.prob-list{display:flex;flex-direction:column;margin-top:16px;}
+.prob-item{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--rule);align-items:flex-start;}
+.prob-icon{font-size:18px;flex-shrink:0;padding-top:1px;}
+.prob-text strong{display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:2px;}
+.prob-text span{font-size:12px;font-weight:300;color:var(--ink3);}
+
+/* ── MECHANISM ── */
+.mech-list{display:flex;flex-direction:column;gap:2px;background:var(--rule);margin-top:16px;}
+.mech-card{background:var(--white);padding:20px 16px;}
+.mech-chip{display:inline-block;font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;background:var(--navy);color:var(--gold2);padding:3px 9px;margin-bottom:10px;}
+.mech-card h4{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:700;color:var(--ink);margin-bottom:7px;}
+.mech-card p{font-size:13px;font-weight:300;color:var(--ink3);line-height:1.7;}
+
+/* ── LIFESTYLE IMGS ── */
+.life-stack{display:flex;flex-direction:column;gap:8px;margin-top:16px;}
+.life-img{width:100%;overflow:hidden;border-radius:2px;position:relative;}
+.life-img img{width:100%;height:260px;object-fit:cover;display:block;}
+.life-cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(13,13,11,.5));padding:14px 14px 10px;color:#fff;font-size:11px;font-weight:600;letter-spacing:.5px;}
+
+/* ── REVIEWS ── */
+.reviews-summary{display:flex;align-items:center;gap:14px;background:var(--fog);padding:14px 16px;margin-top:16px;border-radius:4px;}
+.review-big{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:700;color:var(--ink);line-height:1;}
+.review-right .stars{color:var(--gold);font-size:15px;letter-spacing:2px;}
+.review-right p{font-size:11px;font-weight:300;color:var(--ink4);margin-top:2px;}
+.review-list{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+.review-card{padding:16px 0;border-bottom:1px solid var(--rule);}
+.review-card:last-child{border-bottom:none;}
+.review-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.review-stars{color:var(--gold);font-size:12px;letter-spacing:1.5px;}
+.review-date{font-size:10px;color:var(--ink5);}
+.review-name{font-size:12px;font-weight:600;color:var(--ink2);margin-bottom:5px;}
+.review-text{font-size:13px;font-weight:300;color:var(--ink3);line-height:1.65;font-style:italic;}
+.review-verified{font-size:10px;color:var(--green);margin-top:5px;}
+.review-photos{display:flex;gap:6px;margin-top:8px;}
+.review-photos img{width:56px;height:56px;object-fit:cover;border-radius:2px;border:1px solid var(--rule);}
+
+/* ── GUARANTEE ── */
+.guar-box{border:1px solid var(--rule);padding:24px 16px;text-align:center;background:var(--fog);border-radius:4px;margin-top:16px;}
+.guar-icon{font-size:36px;margin-bottom:12px;}
+.guar-box h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--ink);margin-bottom:10px;}
+.guar-box p{font-size:13px;font-weight:300;color:var(--ink3);line-height:1.7;margin-bottom:16px;}
+.g-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;}
+.g-chip{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border:1px solid var(--rule2);padding:5px 10px;color:var(--ink3);}
+
+/* ── FAQ ── */
+.faq-item{border-bottom:1px solid var(--rule);}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:15px 0;cursor:pointer;font-size:14px;font-weight:500;color:var(--ink);gap:12px;user-select:none;}
+.faq-arrow{font-size:18px;color:var(--ink4);transition:transform .3s;flex-shrink:0;}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.faq-a-inner{padding:0 0 14px;font-size:13px;font-weight:300;color:var(--ink3);line-height:1.75;}
+.faq-item.open .faq-arrow{transform:rotate(45deg);}
+.faq-item.open .faq-a{max-height:300px;}
+
+/* ── STICKY BOTTOM BAR ── */
+.sticky-bottom{
+  position:fixed;bottom:0;left:0;right:0;
+  background:var(--white);
+  border-top:1px solid var(--rule);
+  padding:10px 16px;
+  display:flex;align-items:center;gap:8px;
+  z-index:100;
+  box-shadow:0 -4px 20px rgba(0,0,0,.07);
+}
+.sb-price{flex-shrink:0;}
+.sb-was{font-size:10px;color:var(--ink4);text-decoration:line-through;display:block;}
+.sb-now{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--ink);display:block;line-height:1;}
+.sb-buy{
+  flex:1;background:var(--navy);color:#fff;
+  font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  padding:13px 10px;border:none;cursor:pointer;
+  transition:background .2s;text-align:center;
+}
+.sb-buy:hover{background:var(--navy2);}
+.sb-cart{
+  flex-shrink:0;width:46px;height:46px;
+  border:1.5px solid var(--rule2);background:var(--white);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:border-color .2s;
+}
+.sb-cart:hover{border-color:var(--navy);}
+.sb-cart svg{width:18px;height:18px;stroke:var(--ink2);fill:none;stroke-width:1.5;}
+
+/* ── FOOTER ── */
+.lp-footer{
+  background:var(--fog);border-top:1px solid var(--rule);
+  padding:18px 16px;
+}
+.lp-footer-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:14px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--ink);
+  display:flex;align-items:center;gap:8px;margin-bottom:14px;
+}
+.lp-footer-logo small{font-size:8px;font-weight:400;letter-spacing:4px;color:var(--ink4);}
+.lp-links{display:flex;flex-wrap:wrap;gap:12px 18px;list-style:none;margin-bottom:14px;}
+.lp-links a{font-size:10px;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink4);text-decoration:none;display:inline-flex;align-items:center;gap:4px;}
+.lp-links a:hover{color:var(--ink);}
+.lp-copy{font-size:10px;font-weight:300;color:var(--ink5);}
+
+/* hide desktop sticky on mobile already handled */
+</style>
+
+<!-- URGENCY -->
+<div class="urgency">
+  <span class="u-dot"></span>
+  <span>Oferta limitada · 25% descuento + envío gratis</span>
+  <span class="u-timer" id="timer">23:47:12</span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="{{ section.settings.url_tienda }}" class="nav-logo">Calm Step<small>EMS+</small></a>
+  <button class="nav-cart" onclick="addToCart()" aria-label="Carrito">
+    <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    <span class="nav-cart-count" id="cartCount">0</span>
+  </button>
+</nav>
+
+<!-- HERO IMAGE -->
+<div class="hero-img">
+  <img src="{{ 'cs-hero-product.png' | asset_url }}" alt="Calm Step EMS+ en uso" loading="lazy" />
+  <span class="hero-disc-badge">-25% HOY</span>
+</div>
+
+<!-- PRODUCT INFO -->
+<div class="product-info">
+  <div class="pi-eyebrow">Triple Therapy Technology</div>
+  <h1 class="pi-title">Calm Step EMS+<br><em>Alivio real para tus pies</em></h1>
+  <div class="pi-stars">
+    <span class="stars">★★★★★</span>
+    <span>4.8 / 5 &nbsp;·&nbsp; +1.200 clientes</span>
+  </div>
+
+  <!-- PRICE -->
+  <div class="price-wrap">
+    <div class="price-was">Antes $53.307 CLP</div>
+    <div class="price-row">
+      <span class="price-now">$39.980</span>
+      <span class="price-save">-25%</span>
+    </div>
+    <div class="price-ship">
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Envío gratis a todo Chile
+    </div>
+  </div>
+
+  <!-- QUANTITY OFFERS -->
+  <div class="qty-section">
+    <div class="qty-label">Elige tu cantidad</div>
+    <div class="qty-grid">
+
+      <div class="qty-card selected" onclick="selectQty(this,'$39.980')">
+        <div class="qty-radio"></div>
+        <div class="qty-info">
+          <strong>1 Unidad</strong>
+          <span>Para ti — empieza hoy</span>
+        </div>
+        <div class="qty-price-col">
+          <div class="qty-price">$39.980</div>
+          <div class="qty-per">c/u · CLP</div>
+        </div>
+      </div>
+
+      <div class="qty-card popular" onclick="selectQty(this,'$54.980')">
+        <div class="qty-badge">Más popular</div>
+        <div class="qty-radio"></div>
+        <div class="qty-info">
+          <strong>2 Unidades</strong>
+          <span>Para ti y quien más quieres</span>
+          <div class="qty-save-chip">Ahorras $24.980</div>
+        </div>
+        <div class="qty-price-col">
+          <div class="qty-price">$54.980</div>
+          <div class="qty-per">$27.490 c/u</div>
+        </div>
+      </div>
+
+      <div class="qty-card" onclick="selectQty(this,'$92.980')">
+        <div class="qty-radio"></div>
+        <div class="qty-info">
+          <strong>Pack Familiar · 4 und.</strong>
+          <span>El mejor precio por unidad</span>
+          <div class="qty-save-chip">Ahorras $66.940</div>
+        </div>
+        <div class="qty-price-col">
+          <div class="qty-price">$92.980</div>
+          <div class="qty-per">$23.245 c/u</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BUTTONS -->
+  <div class="btn-wrap">
+    <button class="btn-cart" onclick="addToCart()">
+      <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      Agregar al carrito
+    </button>
+    <button class="btn-buy" onclick="goCheckout()">
+      Comprar ahora →
+    </button>
+  </div>
+
+  <!-- PAYMENT METHODS -->
+  <div class="pay-row">
+    <div class="pay-badge">Mercado Pago</div>
+    <div class="pay-badge">Apple Pay</div>
+    <div class="pay-badge">G Pay</div>
+    <div class="pay-badge">VISA</div>
+    <div class="pay-badge">Mastercard</div>
+  </div>
+
+  <!-- TRUST STRIP -->
+  <div class="trust-strip">
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+      <strong>30 días</strong>
+      <span>Garantía total</span>
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <strong>Envío gratis</strong>
+      <span>Todo Chile</span>
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <strong>100% seguro</strong>
+      <span>Pago protegido</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEMS -->
+<section class="sec">
+  <div class="sec-eyebrow">¿Te identificas?</div>
+  <h2 class="sec-title">Los síntomas que<br><em>nadie elimina del todo</em></h2>
+  <div class="prob-list">
+    <div class="prob-item"><span class="prob-icon">🔥</span><div class="prob-text"><strong>Ardor nocturno que aparece al acostarte</strong><span>Cuando el cuerpo se calma, el dolor toma el control.</span></div></div>
+    <div class="prob-item"><span class="prob-icon">⚡</span><div class="prob-text"><strong>Hormigueo y entumecimiento sin explicación</strong><span>Tu médico lo llama neuropatía. Tú lo vives cada noche.</span></div></div>
+    <div class="prob-item"><span class="prob-icon">🪨</span><div class="prob-text"><strong>Los primeros pasos de la mañana son tortura</strong><span>Calculas cada movimiento antes de salir de la cama.</span></div></div>
+    <div class="prob-item"><span class="prob-icon">😤</span><div class="prob-text"><strong>Ya probaste de todo y dura solo 10 minutos</strong><span>Cremas, sales, plantillas. Alivio temporal. Problema permanente.</span></div></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="sec" style="background:var(--fog);">
+  <div class="sec-eyebrow">Cómo funciona</div>
+  <h2 class="sec-title">Triple terapia que<br><em>ataca las 3 causas</em></h2>
+  <p class="sec-body" style="margin-top:8px;">Las soluciones parciales solo atacan una causa. Calm Step EMS+ ataca las tres simultáneamente.</p>
+  <div class="mech-list">
+    <div class="mech-card">
+      <div class="mech-chip">EMS · Circulación</div>
+      <h4>⚡ Estimulación Muscular</h4>
+      <p>Activa la bomba músculo-venosa de forma pasiva. Mejora el retorno circulatorio mientras estás sentado.</p>
+    </div>
+    <div class="mech-card">
+      <div class="mech-chip">Calor · Tensión</div>
+      <h4>🌡 Calor Terapéutico</h4>
+      <p>Vasodilatación local y liberación de tensión muscular profunda. Calor directo donde más se necesita.</p>
+    </div>
+    <div class="mech-card">
+      <div class="mech-chip">Compresión · Retorno</div>
+      <h4>◎ Compresión Activa</h4>
+      <p>Presión uniforme que apoya el retorno venoso y reduce la sensación de pesadez e hinchazón.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LIFESTYLE -->
+<section class="sec">
+  <div class="sec-eyebrow">En uso real</div>
+  <h2 class="sec-title">15 minutos al día.<br><em>Sentado. En casa.</em></h2>
+  <div class="life-stack">
+    <div class="life-img">
+      <img src="{{ 'cs-lifestyle-1.png' | asset_url }}" alt="Calm Step EMS+" loading="lazy" style="height:280px;object-fit:contain;background:var(--fog);padding:20px;" />
+    </div>
+    <div class="life-img">
+      <img src="{{ 'cs-lifestyle-2.png' | asset_url }}" alt="Paso 1" loading="lazy" />
+      <span class="life-cap">Paso 1 — Colócatelo cómodamente</span>
+    </div>
+    <div class="life-img">
+      <img src="{{ 'cs-lifestyle-2.png' | asset_url }}" alt="Paso 2" loading="lazy" />
+      <span class="life-cap">Paso 2 — Elige tu nivel y relájate</span>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="sec" style="background:var(--snow);">
+  <div class="sec-eyebrow">Reseñas de clientes</div>
+  <h2 class="sec-title">Lo que dicen<br><em>quienes lo viven</em></h2>
+
+  <div class="reviews-summary">
+    <div class="review-big">4.8</div>
+    <div class="review-right">
+      <div class="stars">★★★★★</div>
+      <p>Basado en +1.200 reseñas verificadas</p>
+    </div>
+  </div>
+
+  <div class="review-list">
+    <div class="review-card">
+      <div class="review-header">
+        <span class="review-stars">★★★★★</span>
+        <span class="review-date">Marzo 2025</span>
+      </div>
+      <div class="review-name">Silvia M. — Santiago</div>
+      <div class="review-text">"Cuatro años con ardor nocturno. A la tercera semana de uso empecé a dormirme antes de que apareciera el ardor. No desapareció todo, pero bajó muchísimo y volvió el descanso. Esto cambió mi vida."</div>
+      <div class="review-verified">✓ Compra verificada</div>
+    </div>
+    <div class="review-card">
+      <div class="review-header">
+        <span class="review-stars">★★★★★</span>
+        <span class="review-date">Febrero 2025</span>
+      </div>
+      <div class="review-name">Héctor R. — Concepción</div>
+      <div class="review-text">"Diabetes tipo 2 y hormigueo en los pies desde hace tres años. Con el visto bueno de mi médico lo probé y en dos semanas ya notaba diferencia en las noches. Ahora es parte de mi rutina diaria."</div>
+      <div class="review-verified">✓ Compra verificada</div>
+    </div>
+    <div class="review-card">
+      <div class="review-header">
+        <span class="review-stars">★★★★☆</span>
+        <span class="review-date">Enero 2025</span>
+      </div>
+      <div class="review-name">Carlos V. — Viña del Mar</div>
+      <div class="review-text">"Era completamente escéptico. Le di los 30 días de garantía. A la tercera semana algo cambió. El entumecimiento bajó de intensidad y sobre todo duermo mucho mejor. Eso ya justifica todo."</div>
+      <div class="review-verified">✓ Compra verificada</div>
+    </div>
+    <div class="review-card">
+      <div class="review-header">
+        <span class="review-stars">★★★★★</span>
+        <span class="review-date">Enero 2025</span>
+      </div>
+      <div class="review-name">Patricia G. — Temuco</div>
+      <div class="review-text">"Enfermera de turno, 10 horas de pie al día. Llegaba a casa con los tobillos hinchados y ese dolor sordo constante. Desde que lo uso, la hinchazón baja notablemente. 20 minutos antes de dormir y listo."</div>
+      <div class="review-verified">✓ Compra verificada</div>
+    </div>
+    <div class="review-card">
+      <div class="review-header">
+        <span class="review-stars">★★★★★</span>
+        <span class="review-date">Diciembre 2024</span>
+      </div>
+      <div class="review-name">Jorge F. — Antofagasta</div>
+      <div class="review-text">"Compré el pack familiar para que mi mamá también lo probara. Los dos notamos diferencia. Mi mamá tiene 67 años y llevaba años quejándose del entumecimiento. Ahora duerme sin interrupciones."</div>
+      <div class="review-verified">✓ Compra verificada</div>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="sec">
+  <div class="sec-eyebrow">Sin riesgo</div>
+  <div class="guar-box">
+    <div class="guar-icon">🛡</div>
+    <h3>Garantía total 30 días</h3>
+    <p>Si en 30 días no notas diferencia, te devolvemos el 100% de tu dinero. Sin preguntas, sin formularios, sin letra pequeña.</p>
+    <div class="g-chips">
+      <span class="g-chip">30 días devolución</span>
+      <span class="g-chip">Sin suscripciones</span>
+      <span class="g-chip">Envío gratis</span>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" style="background:var(--snow);padding-top:24px;">
+  <div class="sec-eyebrow">Preguntas frecuentes</div>
+  <h2 class="sec-title" style="margin-bottom:16px;">Todo lo que necesitas<br><em>saber</em></h2>
+  <div class="faq-item open">
+    <div class="faq-q" onclick="toggleFaq(this)">¿Cuánto tarda en hacer efecto? <span class="faq-arrow">+</span></div>
+    <div class="faq-a"><div class="faq-a-inner">La mayoría reporta cambios desde la 2ª o 3ª semana de uso diario. El alivio de cada sesión se siente desde el principio; el efecto acumulativo se construye con consistencia.</div></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">¿Puedo usarlo si tengo diabetes? <span class="faq-arrow">+</span></div>
+    <div class="faq-a"><div class="faq-a-inner">Si tienes pérdida de sensibilidad en los pies, consulta a tu médico antes de usar. Para diabetes sin pérdida de sensibilidad, muchos usuarios lo usan sin problemas comenzando en el nivel más bajo.</div></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">¿Cuánto tiempo dura cada sesión? <span class="faq-arrow">+</span></div>
+    <div class="faq-a"><div class="faq-a-inner">Sesiones de 15 a 20 minutos diarios. Puedes usarlo viendo televisión, leyendo o descansando — es completamente inalámbrico y portátil.</div></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">¿Cómo funciona la garantía? <span class="faq-arrow">+</span></div>
+    <div class="faq-a"><div class="faq-a-inner">Tienes 30 días desde que recibes el producto. Contáctanos por WhatsApp, coordinamos la devolución y te reembolsamos el 100%. Sin preguntas.</div></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">¿Cuánto demora el envío? <span class="faq-arrow">+</span></div>
+    <div class="faq-a"><div class="faq-a-inner">Envío gratis a todo Chile. Despacho en 24-48 horas hábiles con número de seguimiento. Entrega estimada: 3 a 5 días hábiles según región.</div></div>
+  </div>
+</section>
+
+<!-- STICKY BOTTOM BAR -->
+<div class="sticky-bottom">
+  <div class="sb-price">
+    <span class="sb-was">$53.307</span>
+    <span class="sb-now" id="stickyPrice">$39.980</span>
+  </div>
+  <button class="sb-cart" onclick="addToCart()" title="Agregar al carrito">
+    <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+  </button>
+  <button class="sb-buy" onclick="goCheckout()">Comprar ahora →</button>
+</div>
+
+<!-- FOOTER -->
+<footer class="lp-footer">
+  <div class="lp-footer-logo">
+    Calm Step
+    <small>EMS+</small>
+  </div>
+  <ul class="lp-links">
+    <li><a href="{{ section.settings.url_privacidad }}">Privacidad</a></li>
+    <li><a href="{{ section.settings.url_terminos }}">Términos</a></li>
+    <li><a href="{{ section.settings.url_devoluciones }}">Devoluciones</a></li>
+    <li>
+      <a href="https://wa.me/{{ section.settings.whatsapp_numero }}" target="_blank">
+        <svg viewBox="0 0 24 24" width="10" height="10"><path d="M20.52 3.48A11.93 11.93 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.99L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.21-1.25-6.22-3.48-8.52z" fill="#25D366"/><path d="M17.47 14.38c-.28-.14-1.65-.81-1.9-.9-.26-.1-.44-.14-.63.14-.19.28-.72.9-.88 1.08-.16.19-.33.21-.61.07-.28-.14-1.18-.44-2.25-1.39-.83-.74-1.39-1.66-1.56-1.94-.16-.28-.02-.43.12-.57.13-.13.28-.33.42-.5.14-.17.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.63-1.51-.86-2.07-.23-.54-.46-.47-.63-.47-.16 0-.35-.02-.54-.02s-.49.07-.75.36c-.26.28-1 .98-1 2.39s1.02 2.77 1.16 2.96c.14.19 2.01 3.07 4.87 4.3.68.29 1.21.47 1.63.6.68.22 1.3.19 1.79.11.55-.08 1.68-.69 1.92-1.35.24-.66.24-1.23.17-1.35-.07-.12-.26-.19-.54-.33z" fill="white"/></svg>
+        Soporte
+      </a>
+    </li>
+  </ul>
+  <div class="lp-copy">© 2025 Calm Step EMS+. Todos los derechos reservados.</div>
+</footer>
+
+<script>
+var _cartUrl={{ section.settings.cta_url | json }};
+var _checkoutUrl={{ section.settings.checkout_url | json }};
+// Timer
+(function(){
+  let t = 23*3600+47*60+12;
+  setInterval(()=>{
+    t = t>0 ? t-1 : 86399;
+    const h=String(Math.floor(t/3600)).padStart(2,'0');
+    const m=String(Math.floor((t%3600)/60)).padStart(2,'0');
+    const s=String(t%60).padStart(2,'0');
+    const el=document.getElementById('timer');
+    if(el) el.textContent=h+':'+m+':'+s;
+  },1000);
+})();
+
+// Qty select
+const prices = {'$39.980':'$39.980','$54.980':'$54.980','$92.980':'$92.980'};
+function selectQty(el, price){
+  document.querySelectorAll('.qty-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  const stickyEl = document.getElementById('stickyPrice');
+  if(stickyEl) stickyEl.textContent = price + ' CLP';
+}
+
+// FAQ
+function toggleFaq(el){
+  el.parentElement.classList.toggle('open');
+}
+
+// Cart / Checkout
+function addToCart(){ window.location.href=_cartUrl; }
+function goCheckout(){ window.location.href=_checkoutUrl; }
+</script>
+
+{% schema %}
+{
+  "name": "Calm Step Funnel",
+  "settings": [
+    {"type":"url","id":"cta_url","label":"URL Agregar al carrito"},
+    {"type":"url","id":"checkout_url","label":"URL Comprar ahora"},
+    {"type":"url","id":"url_tienda","label":"URL Logo"},
+    {"type":"url","id":"url_privacidad","label":"Privacidad"},
+    {"type":"url","id":"url_terminos","label":"Términos"},
+    {"type":"url","id":"url_devoluciones","label":"Devoluciones"},
+    {"type":"text","id":"whatsapp_numero","label":"WhatsApp (sin +)","default":"1234567890"}
+  ],
+  "presets":[{"name":"Calm Step Funnel"}]
+}
+{% endschema %}
